@@ -1,0 +1,74 @@
+.footer {
+  background: var(--ink);
+  color: var(--paper);
+  margin-top: auto;
+}
+
+.top {
+  padding-top: 72px;
+  padding-bottom: 56px;
+  display: grid;
+  grid-template-columns: minmax(280px, 1.6fr) 1fr 1.2fr;
+  gap: clamp(36px, 6vw, 88px);
+}
+
+.brandCol { max-width: 340px; }
+
+.logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.94;
+  margin-bottom: 18px;
+}
+
+.tag {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(246, 241, 230, 0.65);
+  margin-bottom: 18px;
+}
+
+.insta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--paper);
+  border-bottom: 1px solid rgba(246, 241, 230, 0.35);
+  padding-bottom: 2px;
+}
+
+.colHead {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  margin-bottom: 16px;
+  color: var(--paper);
+}
+
+.col ul { display: flex; flex-direction: column; gap: 10px; }
+.col a, .col li {
+  font-size: 0.9rem;
+  color: rgba(246, 241, 230, 0.72);
+  transition: color 0.25s var(--ease);
+}
+.col a:hover { color: var(--paper); }
+
+.contactList li { line-height: 1.5; }
+.muted { color: rgba(246, 241, 230, 0.45) !important; }
+
+.bottom {
+  border-top: 1px solid rgba(246, 241, 230, 0.14);
+  padding-top: 22px;
+  padding-bottom: 22px;
+  font-size: 0.82rem;
+  color: rgba(246, 241, 230, 0.55);
+}
+
+@media (max-width: 900px) {
+  .top { grid-template-columns: 1fr 1fr; row-gap: 36px; }
+  .brandCol { grid-column: 1 / -1; max-width: 100%; }
+}
+
+@media (max-width: 520px) {
+  .top { grid-template-columns: 1fr; }
+}

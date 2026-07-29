@@ -1,0 +1,124 @@
+.hero {
+  padding-top: clamp(48px, 7vw, 80px);
+  padding-bottom: clamp(64px, 8vw, 100px);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.intro { max-width: 380px; position: sticky; top: 100px; }
+.heading { margin-top: 16px; }
+
+.contactCard {
+  margin-top: 32px;
+  padding: 22px 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+.contactCard a { font-weight: 600; }
+
+.form {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: clamp(24px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field span {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.field span em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-2);
+  opacity: 0.7;
+}
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 12px 14px;
+  font-size: 0.94rem;
+  color: var(--ink);
+}
+.field textarea { resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--sage);
+  outline-offset: -1px;
+}
+
+.radioGroup {
+  border: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.radioGroup legend {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+  padding: 0;
+}
+.radioGroup label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+
+.photoNote {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.photoLabel {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.photoNote p {
+  margin-top: 8px;
+  font-size: 0.86rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.photoNote a { text-decoration: underline; }
+
+.sentNote {
+  font-size: 0.86rem;
+  color: var(--sage-dark);
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .intro { position: static; max-width: 100%; }
+  .fieldRow { grid-template-columns: 1fr; }
+}

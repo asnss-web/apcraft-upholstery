@@ -1,0 +1,33 @@
+.banner {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.inner {
+  padding-top: 88px;
+  padding-bottom: 88px;
+  text-align: center;
+  max-width: 720px;
+}
+
+.heading { color: var(--paper); }
+
+.lede {
+  margin-top: 18px;
+  color: rgba(246, 241, 230, 0.7);
+  font-size: 1.05rem;
+}
+
+.actions {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.phoneLink {
+  font-size: 0.9rem;
+  color: rgba(246, 241, 230, 0.6);
+}
+.phoneLink:hover { color: var(--paper); }

@@ -1,0 +1,36 @@
+// Central place for real studio info — keeps every page honest and consistent.
+
+export const studio = {
+  name: "A.P Craft Upholstery",
+  phone: "437 971 5302",
+  phoneHref: "tel:+14379715302",
+  email: "upholsterya.p95@gmail.com",
+  address: "299 Applewood Cres, Vaughan",
+  addressNote: "Workshop by appointment — we come to you across Toronto and the GTA.",
+  instagramHandle: "@ap.craft_upholstery",
+  instagramUrl: "https://instagram.com/ap.craft_upholstery",
+  serviceArea: "Toronto & the GTA",
+};
+
+export const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/commercial", label: "Commercial" },
+  { href: "/process", label: "Process" },
+  { href: "/about", label: "About" },
+];
+
+export const footerWork = [
+  { href: "/services#custom", label: "Custom Upholstery" },
+  { href: "/services#reupholstery", label: "Reupholstery" },
+  { href: "/commercial", label: "Commercial Projects" },
+  { href: "/portfolio", label: "Portfolio" },
+];
+
+export const footerStudio = [
+  { href: "/about", label: "About" },
+  { href: "/process", label: "Process" },
+  { href: "/portfolio#before-after", label: "Before & After" },
+  { href: "/quote", label: "Get a Quote" },
+];

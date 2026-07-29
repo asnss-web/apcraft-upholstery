@@ -54,9 +54,9 @@ const services = [
 
 const featured = [
   portfolioCategories[0].items[0],
-  portfolioCategories[1].items[1],
+  portfolioCategories[1].items[2],
   portfolioCategories[3].items[0],
-  portfolioCategories[2].items[1],
+  portfolioCategories[2].items[2],
   portfolioCategories[1].items[3],
   portfolioCategories[4].items[0],
 ];

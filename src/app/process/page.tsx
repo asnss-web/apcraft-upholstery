@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import CtaBanner from "@/components/CtaBanner";
 import styles from "./process.module.css";
@@ -40,14 +41,26 @@ export default function ProcessPage() {
   return (
     <>
       <section className={styles.hero}>
-        <div className="container">
-          <p className="eyebrow">Process</p>
-          <h1 className={`h-xl ${styles.heading}`}>Five steps, no surprises.</h1>
-          <p className={`lede ${styles.lede}`}>
-            Most home projects take about four to six weeks from written quote
-            to delivery, depending on fabric availability and the scope of the
-            rebuild.
-          </p>
+        <div className={`container ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
+            <p className="eyebrow">Process</p>
+            <h1 className={`h-xl ${styles.heading}`}>Five steps, no surprises.</h1>
+            <p className={`lede ${styles.lede}`}>
+              Most home projects take about four to six weeks from written quote
+              to delivery, depending on fabric availability and the scope of the
+              rebuild.
+            </p>
+          </div>
+          <div className={styles.heroImage}>
+            <Image
+              src="/images/sofa-modular-taupe.jpg"
+              alt="Custom modular sofa by A.P Craft Upholstery"
+              fill
+              priority
+              sizes="(max-width: 860px) 92vw, 46vw"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
         </div>
       </section>
 

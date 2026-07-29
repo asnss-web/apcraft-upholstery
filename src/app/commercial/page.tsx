@@ -21,7 +21,7 @@ const points = [
 
 const gallery = [
   { image: "/images/commercial-booth-red-vinyl.jpg", label: "Restaurant booths" },
-  { image: "/images/banquette-curved-gold-trim.jpg", label: "Hotel lounge banquette" },
+  { image: "/images/banquette-pink-tufted.jpg", label: "Custom tufted banquette" },
   { image: "/images/commercial-salon-leather-booth.jpg", label: "Salon waiting bench" },
   { image: "/images/commercial-lounge-orange.jpg", label: "Lounge seating" },
   { image: "/images/bench-green-leather-retail.jpg", label: "Retail bench" },
@@ -33,7 +33,7 @@ export default function CommercialPage() {
     <>
       <section className={styles.hero}>
         <div className={`container ${styles.heroInner}`}>
-          <div>
+          <div className={styles.heroCopy}>
             <p className="eyebrow">Commercial</p>
             <h1 className={`h-xl ${styles.heading}`}>Banquettes built for the night-after-night.</h1>
             <p className={`lede ${styles.lede}`}>

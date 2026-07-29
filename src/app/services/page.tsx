@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CtaBanner from "@/components/CtaBanner";
+import { studio } from "@/lib/content";
 import styles from "./services.module.css";
 
 export const metadata: Metadata = {
@@ -51,6 +53,10 @@ export default function ServicesPage() {
             Custom upholstery, reupholstery and commercial seating for homes
             and businesses across Toronto and the GTA.
           </p>
+          <div className={styles.heroActions}>
+            <Link href="/quote" className="btn btn-primary">Get a Quote <span className="btn-arrow">→</span></Link>
+            <a href={studio.phoneHref} className="btn btn-outline">Call {studio.phone}</a>
+          </div>
         </div>
       </section>
 

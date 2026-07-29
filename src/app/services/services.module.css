@@ -4,6 +4,12 @@
 }
 .heading { margin-top: 18px; max-width: 780px; }
 .lede { margin-top: 20px; }
+.heroActions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
 .rowInner {
   display: grid;

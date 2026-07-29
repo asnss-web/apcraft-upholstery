@@ -5,19 +5,25 @@
 
 .heroInner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.92fr 1.08fr;
   gap: clamp(32px, 5vw, 64px);
   align-items: center;
 }
 
-.heading { margin-top: 18px; }
+.heroCopy { max-width: 570px; }
+.heading {
+  margin-top: 18px;
+  font-size: clamp(3.15rem, 4.8vw, 4.7rem);
+  line-height: 0.96;
+}
 .lede { margin-top: 20px; }
 .actions { margin-top: 30px; }
 
 .heroImageWrap {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   border: 1px solid var(--line);
+  overflow: hidden;
 }
 
 .gallery {
@@ -56,10 +62,13 @@
   border: 1px solid var(--line);
 }
 
+.pointsGrid > div { height: 100%; }
+
 .point {
   background: var(--paper-deep);
   padding: 26px 20px;
   min-height: 200px;
+  height: 100%;
 }
 
 .pointNum {

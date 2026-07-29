@@ -85,10 +85,13 @@
   border: 1px solid var(--line);
 }
 
+.pointsGrid > div { height: 100%; }
+
 .point {
   background: var(--paper);
   padding: 24px 22px;
   min-height: 185px;
+  height: 100%;
 }
 
 .pointNum {
@@ -214,10 +217,12 @@
 .portfolioHead {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 24px;
+  margin-bottom: 34px;
 }
-.portfolioHead .btn-outline { margin-bottom: 48px; }
+.portfolioHead > div { margin-bottom: 0 !important; }
+.portfolioHead .btn-outline { margin-top: 40px; }
 
 .portfolioGrid {
   display: grid;
@@ -242,7 +247,7 @@
   .servicesGrid { grid-template-columns: 1fr; }
   .portfolioGrid { grid-template-columns: 1fr; }
   .portfolioHead { flex-direction: column; align-items: flex-start; }
-  .portfolioHead .btn-outline { margin-bottom: 32px; }
+  .portfolioHead .btn-outline { margin-top: 0; }
   .factsGrid { grid-template-columns: 1fr; }
   .fact, .fact:nth-child(3) {
     padding: 15px 0;

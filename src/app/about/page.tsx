@@ -11,9 +11,8 @@ export const metadata: Metadata = {
 
 const bio = [
   "With over 10 years of experience in upholstery and custom furniture, our work is built on craftsmanship, precision, and hands-on experience.",
-  "The journey started in Europe, where we worked in furniture manufacturing and learned every stage of the process — from raw materials to the final finished piece.",
-  "Over the years, that experience evolved into a deep understanding of upholstery, furniture construction, and custom commercial seating.",
-  "Today, we bring together both European craftsmanship and Canadian industry experience to create durable, high-quality upholstery for restaurants, commercial spaces, and residential interiors across the GTA.",
+  "Our journey started in Europe, working in furniture manufacturing and learning every stage of the process — from raw materials to the final finished piece. That experience developed into a deep understanding of upholstery, furniture construction, and custom commercial seating.",
+  "Today, we bring together European craftsmanship and Canadian industry experience to create durable, high-quality upholstery for restaurants, commercial spaces, and residential interiors across the GTA.",
   "We believe great furniture is not only about appearance — it should be comfortable, functional, and built to last. Every project is approached with attention to detail, clear communication, and genuine care for the final result.",
 ];
 
@@ -30,7 +29,7 @@ export default function AboutPage() {
       <section className={styles.hero}>
         <div className="container">
           <p className="eyebrow">About Us</p>
-          <h1 className={`h-xl ${styles.heading}`}>Craftsmanship built through experience.</h1>
+          <h1 className={`h-xl ${styles.heading}`}>Craftsmanship built <em>through experience.</em></h1>
         </div>
       </section>
 

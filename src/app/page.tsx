@@ -61,6 +61,31 @@ const featured = [
   portfolioCategories[4].items[0],
 ];
 
+const quickFacts = [
+  { value: "10+ years", label: "Upholstery experience" },
+  { value: "Toronto & GTA", label: "Home and site visits" },
+  { value: "Made to order", label: "Fabric, colour and finish" },
+  { value: "Home + business", label: "Residential and commercial" },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    title: "Send photos",
+    text: "Share photos, rough dimensions and what you would like to change.",
+  },
+  {
+    n: "02",
+    title: "Choose materials",
+    text: "We help select fabric, leather, foam and finishing details for your space.",
+  },
+  {
+    n: "03",
+    title: "We build & deliver",
+    text: "You receive a clear estimate and timeline before work begins.",
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -98,6 +123,16 @@ export default function Home() {
               <span className="tag-swatch" style={{ background: "#e7e2d6" }} />
               Reupholstered in boucle — from our Vaughan workshop
             </div>
+          </div>
+        </div>
+        <div className={`container ${styles.factsWrap}`}>
+          <div className={styles.factsGrid}>
+            {quickFacts.map((fact) => (
+              <div key={fact.value} className={styles.fact}>
+                <strong>{fact.value}</strong>
+                <span>{fact.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -147,6 +182,24 @@ export default function Home() {
                 </Link>
               </Reveal>
             ))}
+          </div>
+          <div className={styles.processBlock}>
+            <div className={styles.processHeading}>
+              <p className="eyebrow">A simple process</p>
+              <h2 className="h-lg">From first photo to finished piece.</h2>
+              <Link href="/process" className={styles.processLink}>See the full process →</Link>
+            </div>
+            <div className={styles.processSteps}>
+              {processSteps.map((step) => (
+                <div key={step.n} className={styles.processStep}>
+                  <span>{step.n}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

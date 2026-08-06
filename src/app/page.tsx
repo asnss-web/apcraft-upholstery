@@ -10,7 +10,6 @@ const projects = [
     title: "Corner sectional, custom build",
     text: "Built to the room's exact corner — squared arms, boxed cushions, a clean architectural line.",
     image: "/images/sofa-gray-sectional-corner.jpg",
-    ratio: styles.ratioWide,
     position: "50% 42%",
   },
   {
@@ -18,16 +17,14 @@ const projects = [
     title: "Antique wingback, restored",
     text: "Stripped back to the frame and re-dressed in mustard velvet — the carving was worth keeping.",
     image: "/images/chair-wingback-burgundy.jpg",
-    ratio: styles.ratioTall,
-    position: "50% 30%",
+    position: "50% 22%",
   },
   {
     n: "03",
     title: "Built-in breakfast-nook banquette",
     text: "Channel-tufted bench built into an existing shelving nook, in a durable olive weave.",
     image: "/images/banquette-built-in-green.jpg",
-    ratio: styles.ratioCinema,
-    position: "50% 78%",
+    position: "50% 68%",
   },
 ];
 
@@ -116,6 +113,9 @@ export default function Home() {
         />
         <div className={styles.heroScrimTop} />
         <div className={styles.heroScrimBottom} />
+        <div className={styles.heroWordmark} aria-hidden="true">
+          <span>A.P Upholstery</span>
+        </div>
         <div className={`container ${styles.heroContent}`}>
           <p className={styles.heroEyebrow}>Custom Upholstery · Toronto &amp; GTA</p>
           <h1 className={styles.heroHeading}>
@@ -179,6 +179,10 @@ export default function Home() {
 
       <section className={styles.benefits}>
         <div className="container">
+          <Reveal>
+            <p className="eyebrow">Why work with us</p>
+            <h2 className={styles.benefitsHeading}>Built around how you actually live.</h2>
+          </Reveal>
           <div className={styles.benefitsGrid}>
             {benefits.map((b, i) => (
               <Reveal key={b.n} delay={i * 60} className={styles.benefit}>
@@ -235,7 +239,7 @@ export default function Home() {
               delay={i * 90}
               className={`${styles.projectRow} ${i % 2 === 1 ? styles.projectRowFlip : ""}`}
             >
-              <div className={`${styles.projectImageWrap} ${p.ratio}`}>
+              <div className={styles.projectImageWrap}>
                 <Image
                   src={p.image}
                   alt={p.title}

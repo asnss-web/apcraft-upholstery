@@ -162,7 +162,9 @@
   font-weight: 600;
   color: var(--accent-dark);
   text-decoration: underline;
+  transition: color 0.25s var(--ease);
 }
+.fileItem button:hover { color: var(--ink); }
 
 .uploadNote {
   margin-top: 14px;

@@ -1,7 +1,7 @@
 /* ==================== hero ==================== */
 .hero {
   position: relative;
-  min-height: clamp(560px, 92vh, 920px);
+  min-height: 100svh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -22,8 +22,34 @@
   position: absolute;
   inset: auto 0 0 0;
   height: 62%;
-  background: linear-gradient(0deg, rgba(16, 14, 11, 0.72) 0%, rgba(16, 14, 11, 0.28) 55%, transparent 100%);
+  background: linear-gradient(0deg, rgba(16, 14, 11, 0.82) 0%, rgba(16, 14, 11, 0.34) 55%, transparent 100%);
   pointer-events: none;
+}
+
+/* faint centered wordmark in the clear space above the headline — a quiet
+   branding flourish behind the readable content, the way ALO uses its
+   logotype as a background texture, sized to never touch the headline */
+.heroWordmark {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(96px, 14vh, 180px);
+  pointer-events: none;
+}
+.heroWordmark span {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 6vw, 4.4rem);
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.14);
+  white-space: nowrap;
+}
+
+@media (max-height: 760px), (max-width: 640px) {
+  .heroWordmark { display: none; }
 }
 
 .heroContent {
@@ -88,8 +114,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px 22px;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 .heroProof span {
   position: relative;
@@ -104,7 +132,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.75);
 }
 .heroProof span:first-child { padding-left: 0; }
 .heroProof span:first-child::before { display: none; }
@@ -211,13 +239,10 @@
 
 .projectImageWrap {
   position: relative;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
 }
 .projectImage { object-fit: cover; }
-
-.ratioWide { aspect-ratio: 3 / 2; }
-.ratioTall { aspect-ratio: 4 / 5; }
-.ratioCinema { aspect-ratio: 21 / 9; }
 
 .projectCopy { max-width: 360px; }
 
@@ -257,7 +282,18 @@
   background: var(--paper-deep);
 }
 
+.benefitsHeading {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.1rem, 3.4vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
 .benefitsGrid {
+  margin-top: clamp(40px, 6vw, 64px);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
@@ -266,30 +302,32 @@
 }
 
 .benefit {
-  background: var(--paper-deep);
-  padding: clamp(28px, 3.5vw, 40px);
+  background: var(--card);
+  padding: clamp(30px, 3.5vw, 44px);
+  transition: background 0.3s var(--ease);
 }
+.benefit:hover { background: var(--paper); }
 
 .benefitNum {
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   color: var(--accent);
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .benefitTitle {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
-  line-height: 1.2;
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  line-height: 1.22;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .benefitText {
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 0.96rem;
+  line-height: 1.65;
   color: var(--ink-2);
   max-width: 42ch;
 }
@@ -354,7 +392,9 @@
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--accent-dark);
+  transition: gap 0.3s var(--ease), color 0.3s var(--ease);
 }
+.previewLink:hover .previewCta { gap: 10px; color: var(--ink); }
 
 /* ==================== custom process ==================== */
 .process {
@@ -367,12 +407,15 @@
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(40px, 6vw, 88px);
-  align-items: center;
+  align-items: stretch;
 }
+
+.processArt { min-height: 480px; }
 
 .processImageWrap {
   position: relative;
-  aspect-ratio: 4 / 5;
+  height: 100%;
+  min-height: 480px;
   overflow: hidden;
 }
 .processImage { object-fit: cover; }
@@ -508,7 +551,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
+.collabLink:hover { color: #fff; border-color: rgba(255, 255, 255, 0.85); }
+.collabLink:hover .btn-arrow { transform: translateX(4px); }
 
 /* ==================== responsive ==================== */
 @media (max-width: 1000px) {
@@ -525,7 +571,8 @@
   .projectCopy { max-width: 100%; }
 
   .processGrid { grid-template-columns: 1fr; }
-  .processImageWrap { aspect-ratio: 16 / 10; }
+  .processArt { min-height: 0; }
+  .processImageWrap { aspect-ratio: 16 / 10; height: auto; min-height: 0; }
 
   .previewGrid { grid-template-columns: 1fr 1fr; }
 }
@@ -538,7 +585,6 @@
   .heroProof { gap: 8px 16px; }
 
   .projectRow + .projectRow { margin-top: 48px; }
-  .ratioCinema { aspect-ratio: 4 / 3; }
 
   .benefitsGrid { grid-template-columns: 1fr; }
   .previewGrid { grid-template-columns: 1fr; }

@@ -10,6 +10,7 @@ export const studio = {
   instagramHandle: "@ap.craft_upholstery",
   instagramUrl: "https://instagram.com/ap.craft_upholstery",
   serviceArea: "Toronto & the GTA",
+  whatsappUrl: "https://wa.me/14379715302",
 };
 
 export const navLinks = [
@@ -17,20 +18,19 @@ export const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/commercial", label: "Commercial" },
-  { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export const footerWork = [
   { href: "/services#custom", label: "Custom Upholstery" },
   { href: "/services#reupholstery", label: "Reupholstery" },
-  { href: "/commercial", label: "Commercial Projects" },
-  { href: "/portfolio", label: "Portfolio" },
+  { href: "/commercial", label: "Commercial Upholstery" },
 ];
 
-export const footerStudio = [
+export const footerExplore = [
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/about", label: "About" },
-  { href: "/process", label: "Process" },
-  { href: "/portfolio#before-after", label: "Before & After" },
+  { href: "/contact", label: "Contact" },
   { href: "/quote", label: "Get a Quote" },
 ];

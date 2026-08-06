@@ -18,6 +18,9 @@ export default function Nav() {
     setOpen(false);
   }
 
+  const isHome = pathname === "/";
+  const overlay = isHome && !scrolled && !open;
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -26,7 +29,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
+    <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""} ${overlay ? styles.overlay : ""}`}>
       <div className={styles.bar}>
         <Link href="/" className={styles.brand} aria-label="A.P Craft Upholstery — home">
           <Image src="/images/logo-v2.png" alt="A.P Craft Upholstery" width={168} height={116} priority className={styles.logo} />
@@ -46,7 +49,7 @@ export default function Nav() {
 
         <div className={styles.right}>
           <a href={studio.phoneHref} className={styles.phone}>{studio.phone}</a>
-          <Link href="/quote" className="btn btn-primary">Get a Quote</Link>
+          <Link href="/quote" className={`btn ${overlay ? "btn-ghost-light" : "btn-primary"}`}>Get a Quote</Link>
         </div>
 
         <button

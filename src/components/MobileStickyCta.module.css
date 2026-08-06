@@ -1,0 +1,23 @@
+.bar {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .bar {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    padding: 12px var(--pad-x) calc(12px + env(safe-area-inset-bottom));
+    background: rgba(250, 248, 243, 0.94);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

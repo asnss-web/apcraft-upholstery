@@ -5,9 +5,11 @@ import styles from "./CtaBanner.module.css";
 export default function CtaBanner({
   heading,
   lede,
+  showWhatsapp = false,
 }: {
   heading: React.ReactNode;
   lede?: string;
+  showWhatsapp?: boolean;
 }) {
   return (
     <section className={styles.banner}>
@@ -18,9 +20,21 @@ export default function CtaBanner({
           <Link href="/quote" className="btn btn-ghost-light">
             Get a Quote <span className="btn-arrow">→</span>
           </Link>
-          <a href={studio.phoneHref} className={styles.phoneLink}>
-            or call {studio.phone}
-          </a>
+          {showWhatsapp ? (
+            <span className={styles.altLinks}>
+              <a href={studio.whatsappUrl} target="_blank" rel="noreferrer" className={styles.phoneLink}>
+                Message on WhatsApp
+              </a>
+              <span aria-hidden="true">·</span>
+              <a href={studio.phoneHref} className={styles.phoneLink}>
+                {studio.phone}
+              </a>
+            </span>
+          ) : (
+            <a href={studio.phoneHref} className={styles.phoneLink}>
+              or call {studio.phone}
+            </a>
+          )}
         </div>
       </div>
     </section>

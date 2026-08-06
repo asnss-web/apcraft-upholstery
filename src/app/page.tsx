@@ -1,14 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import SectionIntro from "@/components/SectionIntro";
-import PortfolioCard from "@/components/PortfolioCard";
 import CtaBanner from "@/components/CtaBanner";
-import { portfolioCategories } from "@/lib/portfolio";
-import { studio } from "@/lib/content";
 import styles from "./page.module.css";
 
-const studioPoints = [
+const projects = [
+  {
+    n: "01",
+    title: "Corner sectional, custom build",
+    text: "Built to the room's exact corner — squared arms, boxed cushions, a clean architectural line.",
+    image: "/images/sofa-gray-sectional-corner.jpg",
+    ratio: styles.ratioWide,
+    position: "50% 42%",
+  },
+  {
+    n: "02",
+    title: "Antique wingback, restored",
+    text: "Stripped back to the frame and re-dressed in mustard velvet — the carving was worth keeping.",
+    image: "/images/chair-wingback-burgundy.jpg",
+    ratio: styles.ratioTall,
+    position: "50% 30%",
+  },
+  {
+    n: "03",
+    title: "Built-in breakfast-nook banquette",
+    text: "Channel-tufted bench built into an existing shelving nook, in a durable olive weave.",
+    image: "/images/banquette-built-in-green.jpg",
+    ratio: styles.ratioCinema,
+    position: "50% 78%",
+  },
+];
+
+const benefits = [
   {
     n: "01",
     title: "Home visits across the GTA",
@@ -21,8 +44,8 @@ const studioPoints = [
   },
   {
     n: "03",
-    title: "One workshop, one upholsterer per piece",
-    text: "Your project doesn't get passed down a line. It's stripped, rebuilt, and finished by the same set of hands.",
+    title: "Made to order",
+    text: "Every piece is tailored to your preferred size, style, fabric, colour and finishing details.",
   },
   {
     n: "04",
@@ -33,56 +56,48 @@ const studioPoints = [
 
 const services = [
   {
-    href: "/services#custom",
+    n: "01",
     title: "Custom Upholstery",
-    text: "Beds, headboards, benches, sectionals and chairs — built to order, in the fabric and finish you choose.",
-    image: "/images/bed-charcoal-chesterfield.jpg",
+    text: "Custom furniture made to fit your space, style and everyday needs.",
+    href: "/services#custom",
+    image: "/images/chair-dining-navy-velvet.jpg",
   },
   {
-    href: "/services#reupholstery",
+    n: "02",
     title: "Reupholstery",
-    text: "New foam, new springs, new fabric or leather — the frame you love, brought back to brand new.",
-    image: "/images/chair-wingback-burgundy.jpg",
+    text: "Professional restoration and reupholstery for furniture worth keeping.",
+    href: "/services#reupholstery",
+    image: "/images/sofa-family-room-sectional.jpg",
   },
   {
+    n: "03",
+    title: "Commercial Upholstery",
+    text: "Durable custom seating and upholstery for restaurants, offices, hotels and other commercial interiors.",
     href: "/commercial",
-    title: "Commercial",
-    text: "Restaurants, salons, hotels and offices — durable, contract-ready seating built for daily use.",
     image: "/images/commercial-booth-red-vinyl.jpg",
   },
-];
-
-const featured = [
-  portfolioCategories[0].items[0],
-  portfolioCategories[1].items[2],
-  portfolioCategories[3].items[0],
-  portfolioCategories[2].items[2],
-  portfolioCategories[1].items[3],
-  portfolioCategories[4].items[0],
-];
-
-const quickFacts = [
-  { value: "10+ years", label: "Upholstery experience" },
-  { value: "Toronto & GTA", label: "Home and site visits" },
-  { value: "Made to order", label: "Fabric, colour and finish" },
-  { value: "Home + business", label: "Residential and commercial" },
 ];
 
 const processSteps = [
   {
     n: "01",
-    title: "Send photos",
-    text: "Share photos, rough dimensions and what you would like to change.",
+    title: "Share your project",
+    text: "Send photos, rough dimensions and a few words on what you'd like to change.",
   },
   {
     n: "02",
-    title: "Choose materials",
-    text: "We help select fabric, leather, foam and finishing details for your space.",
+    title: "Materials & measurements",
+    text: "We visit your space, bring fabric samples, and talk through finish and comfort.",
   },
   {
     n: "03",
-    title: "We build & deliver",
-    text: "You receive a clear estimate and timeline before work begins.",
+    title: "Quote & approval",
+    text: "A clear, written estimate before any work begins — no surprises later.",
+  },
+  {
+    n: "04",
+    title: "Production & delivery",
+    text: "Built start to finish by one upholsterer, then delivered to your door.",
   },
 ];
 
@@ -90,144 +105,235 @@ export default function Home() {
   return (
     <>
       <section className={styles.hero}>
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroCopy}>
-            <p className="eyebrow">{studio.name} · {studio.serviceArea}</p>
-            <h1 className={`h-xl ${styles.heroHeading}`}>
-              Furniture worth keeping,
-              <br />
-              made to last another decade.
-            </h1>
-            <p className={`lede ${styles.heroLede}`}>
-              We reupholster, rebuild and custom-build furniture out of our Vaughan
-              workshop — with fabric samples brought to your door across Toronto
-              and the GTA.
-            </p>
-            <div className={styles.heroActions}>
-              <Link href="/quote" className="btn btn-primary">Get a Quote <span className="btn-arrow">→</span></Link>
-              <Link href="/portfolio" className="btn btn-outline">View Portfolio</Link>
-            </div>
+        <Image
+          src="/images/bed-beige-tufted-panel.jpg"
+          alt="Custom channel-tufted headboard and platform bed, upholstered by A.P Craft"
+          fill
+          priority
+          sizes="100vw"
+          className={styles.heroImage}
+          style={{ objectPosition: "50% 62%" }}
+        />
+        <div className={styles.heroScrimTop} />
+        <div className={styles.heroScrimBottom} />
+        <div className={`container ${styles.heroContent}`}>
+          <p className={styles.heroEyebrow}>Custom Upholstery · Toronto &amp; GTA</p>
+          <h1 className={styles.heroHeading}>
+            Furniture made around
+            <br className={styles.heroBreak} />
+            {" "}your space, your style,
+            <br className={styles.heroBreak} />
+            {" "}your life.
+          </h1>
+          <div className={styles.heroActions}>
+            <Link href="/quote" className="btn btn-primary">
+              Get a Quote <span className="btn-arrow">→</span>
+            </Link>
+            <Link href="/portfolio" className={styles.heroSecondary}>
+              View Our Work <span className="btn-arrow">→</span>
+            </Link>
           </div>
-          <div className={styles.heroArt}>
-            <div className={styles.heroImageWrap}>
-              <Image
-                src="/images/hero-boucle-chairs.jpg"
-                alt="A pair of boucle armchairs reupholstered by A.P Craft"
-                fill
-                priority
-                sizes="(max-width: 900px) 100vw, 640px"
-                className={styles.heroImage}
-              />
-            </div>
-            <div className={styles.heroCaption}>
-              <span className="tag-swatch" style={{ background: "#e7e2d6" }} />
-              Reupholstered in boucle — from our Vaughan workshop
-            </div>
-          </div>
+          <p className={styles.heroProof}>
+            <span>In-home measurements</span>
+            <span>Samples brought to you</span>
+            <span>Residential &amp; commercial</span>
+          </p>
         </div>
-        <div className={`container ${styles.factsWrap}`}>
-          <div className={styles.factsGrid}>
-            {quickFacts.map((fact) => (
-              <div key={fact.value} className={styles.fact}>
-                <strong>{fact.value}</strong>
-                <span>{fact.label}</span>
+      </section>
+
+      <section className={styles.intro}>
+        <div className="container">
+          <div className={styles.introGrid}>
+            <Reveal className={styles.introText}>
+              <p className="eyebrow">What we do</p>
+              <h2 className={styles.introHeading}>
+                Furniture should fit the client — not the other way around.
+              </h2>
+              <p className={styles.introLede}>
+                From custom-built pieces to complete reupholstery, every project starts
+                with your space, not a showroom floor. We visit your home or job site,
+                bring fabric and leather samples, and help you choose finishes that hold
+                up to real, everyday life.
+              </p>
+              <ul className={styles.introList}>
+                <li>Custom furniture, built to your exact dimensions</li>
+                <li>Reupholstery that keeps the frame you already love</li>
+                <li>In-home consultation, with samples brought to you</li>
+              </ul>
+            </Reveal>
+            <Reveal delay={120} className={styles.introArt}>
+              <div className={styles.introImageWrap}>
+                <Image
+                  src="/images/home-antique-armchair.jpg"
+                  alt="Antique armchair reupholstered in a patterned damask, beside a sunlit window"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 38vw"
+                  className={styles.introImage}
+                  style={{ objectPosition: "60% 40%" }}
+                />
               </div>
-            ))}
+            </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className={styles.benefits}>
         <div className="container">
-          <Reveal>
-            <SectionIntro
-              eyebrow="Why clients choose us"
-              heading="The studio that comes to you."
-              lede="Most upholstery shops ask you to drive across town with a couch in the back of a van. We don't. We arrive at your home or job site with measuring tools and a curated set of samples, and we leave with a clear, written estimate."
-            />
-          </Reveal>
-          <div className={styles.pointsGrid}>
-            {studioPoints.map((p, i) => (
-              <Reveal key={p.n} delay={i * 80}>
-                <div className={styles.point}>
-                  <span className={styles.pointNum}>{p.n}</span>
-                  <h3 className={styles.pointTitle}>{p.title}</h3>
-                  <p className={styles.pointText}>{p.text}</p>
-                </div>
+          <div className={styles.benefitsGrid}>
+            {benefits.map((b, i) => (
+              <Reveal key={b.n} delay={i * 60} className={styles.benefit}>
+                <span className={styles.benefitNum}>{b.n}</span>
+                <h3 className={styles.benefitTitle}>{b.title}</h3>
+                <p className={styles.benefitText}>{b.text}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ background: "var(--paper-deep)" }}>
+      <section className={styles.services}>
         <div className="container">
           <Reveal>
-            <SectionIntro
-              eyebrow="What we build"
-              heading="Everything under one roof."
-              lede="Custom upholstery, reupholstery and commercial seating for homes and businesses across Toronto and the GTA."
-            />
+            <p className="eyebrow">What we build</p>
+            <h2 className={styles.servicesHeading}>Three ways we work.</h2>
           </Reveal>
-          <div className={styles.servicesGrid}>
+          <div className={styles.previewGrid}>
             {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 90}>
-                <Link href={s.href} className={styles.serviceCard}>
-                  <div className={styles.serviceImageWrap}>
-                    <Image src={s.image} alt={s.title} fill sizes="(max-width: 760px) 92vw, 30vw" className={styles.serviceImage} />
+              <Reveal key={s.n} delay={i * 70} className={styles.previewCard}>
+                <Link href={s.href} className={styles.previewLink}>
+                  <div className={styles.previewImageWrap}>
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      sizes="(max-width: 900px) 92vw, 30vw"
+                      className={styles.previewImage}
+                    />
                   </div>
-                  <h3 className={styles.serviceTitle}>{s.title}</h3>
-                  <p className={styles.serviceText}>{s.text}</p>
-                  <span className={styles.serviceLink}>Explore <span className="btn-arrow">→</span></span>
+                  <h3 className={styles.previewTitle}>{s.title}</h3>
+                  <p className={styles.previewText}>{s.text}</p>
+                  <span className={styles.previewCta}>
+                    Learn more <span className="btn-arrow">→</span>
+                  </span>
                 </Link>
               </Reveal>
             ))}
           </div>
-          <div className={styles.processBlock}>
-            <div className={styles.processHeading}>
-              <p className="eyebrow">A simple process</p>
-              <h2 className="h-lg">From first photo to finished piece.</h2>
-              <Link href="/process" className={styles.processLink}>See the full process →</Link>
-            </div>
-            <div className={styles.processSteps}>
-              {processSteps.map((step) => (
-                <div key={step.n} className={styles.processStep}>
-                  <span>{step.n}</span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        </div>
+      </section>
+
+      <section className={styles.projects}>
+        <div className="container">
+          <Reveal className={styles.projectsHead}>
+            <p className="eyebrow">Featured portfolio</p>
+            <h2 className={styles.projectsHeading}>Crafted for real spaces.</h2>
+          </Reveal>
+
+          {projects.map((p, i) => (
+            <Reveal
+              key={p.n}
+              delay={i * 90}
+              className={`${styles.projectRow} ${i % 2 === 1 ? styles.projectRowFlip : ""}`}
+            >
+              <div className={`${styles.projectImageWrap} ${p.ratio}`}>
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 62vw"
+                  className={styles.projectImage}
+                  style={{ objectPosition: p.position }}
+                />
+              </div>
+              <div className={styles.projectCopy}>
+                <span className={styles.projectNum}>{p.n}</span>
+                <h3 className={styles.projectTitle}>{p.title}</h3>
+                <p className={styles.projectText}>{p.text}</p>
+              </div>
+            </Reveal>
+          ))}
+
+          <Reveal className={styles.projectsFoot}>
+            <Link href="/portfolio" className="btn btn-outline">
+              View full portfolio <span className="btn-arrow">→</span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className={styles.process}>
+        <div className="container">
+          <div className={styles.processGrid}>
+            <Reveal className={styles.processArt}>
+              <div className={styles.processImageWrap}>
+                <Image
+                  src="/images/ottoman-boucle-stacked.jpg"
+                  alt="Stacked drum ottoman upholstered in ivory boucle"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 34vw"
+                  className={styles.processImage}
+                  style={{ objectPosition: "50% 40%" }}
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={100} className={styles.processCopy}>
+              <p className="eyebrow">Made for you</p>
+              <h2 className={styles.processHeading}>Not limited to what&apos;s in a showroom.</h2>
+              <p className={styles.processLede}>
+                Choose the size, shape, colour, fabric and level of comfort. We review
+                the details with you, take measurements where needed, and recommend
+                materials suited to the space and how the piece will actually be used.
+              </p>
+              <ol className={styles.processSteps}>
+                {processSteps.map((step) => (
+                  <li key={step.n} className={styles.processStep}>
+                    <span>{step.n}</span>
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
+      <section className={styles.collab}>
+        <Image
+          src="/images/commercial-salon-leather-booth.jpg"
+          alt="Black upholstered commercial bench seating built for a salon interior"
+          fill
+          sizes="100vw"
+          className={styles.collabImage}
+          style={{ objectPosition: "35% 55%" }}
+        />
+        <div className={styles.collabScrim} />
+        <div className={`container ${styles.collabContent}`}>
           <Reveal>
-            <div className={styles.portfolioHead}>
-              <SectionIntro
-                eyebrow="Portfolio"
-                heading="Recent pieces from the workshop."
-              />
-              <Link href="/portfolio" className="btn btn-outline">View full portfolio</Link>
+            <p className={styles.collabEyebrow}>Commercial</p>
+            <h2 className={styles.collabHeading}>Commercial Upholstery, Done Right.</h2>
+            <p className={styles.collabLede}>
+              Custom banquettes, booths, seating and upholstered furniture made
+              for daily use and tailored to your space.
+            </p>
+            <div className={styles.collabActions}>
+              <Link href="/commercial" className="btn btn-ghost-light">
+                Explore Commercial Work <span className="btn-arrow">→</span>
+              </Link>
+              <Link href="/quote" className={styles.collabLink}>
+                Discuss a Commercial Project <span className="btn-arrow">→</span>
+              </Link>
             </div>
           </Reveal>
-          <div className={styles.portfolioGrid}>
-            {featured.map((item, i) => (
-              <Reveal key={item.image} delay={i * 60}>
-                <PortfolioCard item={item} />
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
       <CtaBanner
-        heading="Tell us about the piece that deserves another life."
-        lede="Send a few photos and rough measurements — we'll get back to you within a couple of days with next steps."
+        heading="Have a piece in mind?"
+        lede="Send a few photos, rough measurements and a short description — we'll review the project and get back to you."
+        showWhatsapp
       />
     </>
   );

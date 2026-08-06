@@ -1,0 +1,16 @@
+.wrap { max-width: 680px; }
+.heading { margin-top: 16px; }
+.updated { margin-top: 12px; font-size: 0.86rem; color: var(--ink-2); }
+
+.body {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.body p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+.body a { text-decoration: underline; color: var(--ink); }

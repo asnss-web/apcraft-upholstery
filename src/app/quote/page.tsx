@@ -16,9 +16,8 @@ export default function QuotePage() {
           <p className="eyebrow">Get a Quote</p>
           <h1 className={`h-lg ${styles.heading}`}>Tell us about the piece on your mind.</h1>
           <p className="body-copy" style={{ marginTop: 18 }}>
-            A few details and a couple of photos are usually enough for us to
-            give you a realistic idea of cost and timeline. We reply within a
-            couple of days.
+            Share a few details and upload photos of your furniture or space.
+            We will review your request and contact you with the next steps.
           </p>
           <div className={styles.contactCard}>
             <p><a href={studio.phoneHref}>{studio.phone}</a></p>

@@ -67,7 +67,35 @@
   color: var(--clay-dark);
 }
 
+.materialsHeading { margin-top: 14px; }
+.materialsLede { margin-top: 16px; }
+
+.materialsGrid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.materialImageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.materialLabel {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
 @media (max-width: 860px) {
   .rowInner { grid-template-columns: 1fr; }
   .reverse { direction: ltr; }
+  .materialsGrid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 560px) {
+  .materialsGrid { grid-template-columns: 1fr; }
 }

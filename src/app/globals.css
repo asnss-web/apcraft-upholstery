@@ -3,21 +3,29 @@
    charcoal ink, sage green, terracotta clay, warm paper cream. */
 
 :root {
-  --ink: #24211e;
-  --ink-2: #48413a;
-  --paper: #fbfaf7;
-  --paper-deep: #f2eee6;
+  /* warm neutral scale — from the brief's approved palette */
+  --ink: #25231f;
+  --ink-2: #6c6156;
+  --paper: #faf8f3;
+  --paper-deep: #f5f1ea;
+  --stone: #d6c8b8;
   --card: #ffffff;
-  --line: rgba(33, 29, 25, 0.14);
-  --line-soft: rgba(33, 29, 25, 0.08);
+  --line: rgba(37, 35, 31, 0.14);
+  --line-soft: rgba(37, 35, 31, 0.08);
 
-  --sage: #56724f;
-  --sage-dark: #3b5237;
-  --sage-tint: #e7ede2;
+  /* one restrained accent — warm cognac. every legacy two-tone reference
+     below resolves to this single value so the site reads as one accent
+     without needing to touch every component that consumes it. */
+  --accent: #9b6a45;
+  --accent-dark: #7a5233;
+  --accent-tint: #f0e2d2;
 
-  --clay: #a85a2c;
-  --clay-dark: #7e4220;
-  --clay-tint: #f2e3d3;
+  --sage: var(--accent);
+  --sage-dark: var(--accent-dark);
+  --sage-tint: var(--accent-tint);
+  --clay: var(--accent);
+  --clay-dark: var(--accent-dark);
+  --clay-tint: var(--accent-tint);
 
   --on-ink: var(--paper);
 
@@ -220,4 +228,10 @@ input, textarea, select { font: inherit; color: inherit; }
 
 @media (max-width: 760px) {
   :root { --section-y: 54px; }
+}
+
+@media (max-width: 640px) {
+  /* reserves space so the fixed mobile "Get a Quote" bar never overlaps
+     footer content or the last section on a page */
+  body { padding-bottom: 68px; }
 }

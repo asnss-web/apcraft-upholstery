@@ -89,7 +89,35 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      <CtaBanner heading="Have a piece in mind?" lede="Send a few photos and we'll tell you what's possible." />
+      <section className="section" style={{ background: "var(--paper-deep)" }}>
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow">Materials & Guidance</p>
+            <h2 className={`h-lg ${styles.materialsHeading}`}>Materials Chosen for Real Use</h2>
+            <p className={`body-copy ${styles.materialsLede}`}>
+              We help clients choose fabrics, vinyls, leathers, foams and
+              finishes based on appearance, comfort, durability, maintenance
+              and everyday use.
+            </p>
+          </Reveal>
+          <div className={styles.materialsGrid}>
+            {[
+              { src: "/images/hero-boucle-chairs.jpg", label: "Boucle" },
+              { src: "/images/chair-dining-navy-velvet.jpg", label: "Velvet" },
+              { src: "/images/commercial-salon-leather-booth.jpg", label: "Vinyl & leather" },
+            ].map((m, i) => (
+              <Reveal key={m.src} delay={i * 70} className={styles.materialItem}>
+                <div className={styles.materialImageWrap}>
+                  <Image src={m.src} alt={`${m.label} fabric shown on a finished piece`} fill sizes="(max-width: 760px) 92vw, 30vw" style={{ objectFit: "cover" }} />
+                </div>
+                <p className={styles.materialLabel}>{m.label}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CtaBanner heading="Not Sure Which Service You Need?" lede="Send us photos and a short description. We will help you identify the best approach." />
     </>
   );
 }

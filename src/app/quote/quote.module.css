@@ -95,7 +95,15 @@
   color: var(--ink-2);
 }
 
-.photoNote {
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.uploadField {
   border-top: 1px solid var(--line);
   padding-top: 18px;
 }
@@ -104,17 +112,80 @@
   font-weight: 600;
   color: var(--ink);
 }
-.photoNote p {
+.uploadHelp {
   margin-top: 8px;
   font-size: 0.86rem;
   color: var(--ink-2);
   line-height: 1.5;
 }
-.photoNote a { text-decoration: underline; }
+
+.uploadDrop {
+  margin-top: 14px;
+  display: block;
+  border: 1px dashed var(--line);
+  padding: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.uploadDrop:hover { border-color: var(--accent); background: var(--paper); }
+.uploadDrop input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.fileList {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fileItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-size: 0.84rem;
+}
+.fileName {
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fileItem button {
+  flex: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+.uploadNote {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.uploadNote a { text-decoration: underline; }
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.consent input { margin-top: 3px; }
 
 .sentNote {
   font-size: 0.86rem;
-  color: var(--sage-dark);
+  color: var(--accent-dark);
+  line-height: 1.6;
 }
 
 @media (max-width: 900px) {

@@ -3,6 +3,8 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import MobileStickyCta from "@/components/MobileStickyCta";
+import { studio } from "@/lib/content";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -31,13 +33,37 @@ export const metadata: Metadata = {
   },
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: studio.name,
+  image: "https://ap-craft.vercel.app/images/logo-v2.png",
+  telephone: studio.phone,
+  email: studio.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "299 Applewood Cres",
+    addressLocality: "Vaughan",
+    addressRegion: "ON",
+    addressCountry: "CA",
+  },
+  areaServed: "Toronto and the Greater Toronto Area",
+  sameAs: [studio.instagramUrl],
+  priceRange: "$$",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
         <Nav />
         <main>{children}</main>
         <Footer />
+        <MobileStickyCta />
       </body>
     </html>
   );

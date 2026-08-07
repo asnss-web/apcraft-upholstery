@@ -22,15 +22,3 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const footerWork = [
-  { href: "/services#custom", label: "Custom Upholstery" },
-  { href: "/services#reupholstery", label: "Reupholstery" },
-  { href: "/commercial", label: "Commercial Upholstery" },
-];
-
-export const footerExplore = [
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-  { href: "/quote", label: "Get a Quote" },
-];

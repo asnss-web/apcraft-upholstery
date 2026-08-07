@@ -2,30 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CtaBanner from "@/components/CtaBanner";
+import ScrollGallery from "@/components/ScrollGallery";
+import { ShareIcon, SwatchIcon, QuoteIcon, DeliveryIcon } from "@/components/ProcessIcons";
 import styles from "./page.module.css";
 
 const projects = [
-  {
-    n: "01",
-    title: "Corner sectional, custom build",
-    text: "Built to the room's exact corner — squared arms, boxed cushions, a clean architectural line.",
-    image: "/images/sofa-gray-sectional-corner.jpg",
-    position: "50% 42%",
-  },
-  {
-    n: "02",
-    title: "Antique wingback, restored",
-    text: "Stripped back to the frame and re-dressed in mustard velvet — the carving was worth keeping.",
-    image: "/images/chair-wingback-burgundy.jpg",
-    position: "50% 22%",
-  },
-  {
-    n: "03",
-    title: "Built-in breakfast-nook banquette",
-    text: "Channel-tufted bench built into an existing shelving nook, in a durable olive weave.",
-    image: "/images/banquette-built-in-green.jpg",
-    position: "50% 68%",
-  },
+  { image: "/images/sofa-gray-sectional-corner.jpg", title: "Corner Sectional", position: "50% 42%" },
+  { image: "/images/chair-wingback-burgundy.jpg", title: "Wingback Restored", position: "50% 22%" },
+  { image: "/images/banquette-built-in-green.jpg", title: "Breakfast Banquette", position: "50% 68%" },
+  { image: "/images/bed-charcoal-chesterfield.jpg", title: "Chesterfield Bed", position: "50% 35%" },
+  { image: "/images/chaise-blue-patterned.jpg", title: "Patterned Bench", position: "50% 40%" },
 ];
 
 const benefits = [
@@ -80,21 +66,25 @@ const processSteps = [
     n: "01",
     title: "Share your project",
     text: "Send photos, rough dimensions and a few words on what you'd like to change.",
+    icon: ShareIcon,
   },
   {
     n: "02",
     title: "Materials & measurements",
     text: "We visit your space, bring fabric samples, and talk through finish and comfort.",
+    icon: SwatchIcon,
   },
   {
     n: "03",
     title: "Quote & approval",
     text: "A clear, written estimate before any work begins — no surprises later.",
+    icon: QuoteIcon,
   },
   {
     n: "04",
     title: "Production & delivery",
     text: "Built start to finish by one upholsterer, then delivered to your door.",
+    icon: DeliveryIcon,
   },
 ];
 
@@ -113,24 +103,12 @@ export default function Home() {
         />
         <div className={styles.heroScrimTop} />
         <div className={styles.heroScrimBottom} />
-        <div className={styles.heroScrimLeft} />
         <div className={`container ${styles.heroContent}`}>
-          <p className={styles.heroEyebrow}>Custom Upholstery · Toronto &amp; GTA</p>
           <h1 className={styles.heroHeading}>A.P Upholstery</h1>
           <p className={styles.heroSubhead}>Furniture made around your space, your style, your life.</p>
-          <div className={styles.heroActions}>
-            <Link href="/quote" className="btn btn-primary">
-              Get a Quote <span className="btn-arrow">→</span>
-            </Link>
-            <Link href="/portfolio" className={styles.heroSecondary}>
-              View Our Work <span className="btn-arrow">→</span>
-            </Link>
-          </div>
-          <p className={styles.heroProof}>
-            <span>In-home measurements</span>
-            <span>Samples brought to you</span>
-            <span>Residential &amp; commercial</span>
-          </p>
+          <Link href="/quote" className={styles.heroCta}>
+            Get a Quote <span className="btn-arrow">→</span>
+          </Link>
         </div>
       </section>
 
@@ -221,35 +199,14 @@ export default function Home() {
 
       <section className={styles.projects}>
         <div className="container">
-          <Reveal className={styles.projectsHead}>
-            <p className="eyebrow">Featured portfolio</p>
-            <h2 className={styles.projectsHeading}>Crafted for real spaces.</h2>
+          <Reveal>
+            <ScrollGallery
+              eyebrow="Featured portfolio"
+              heading="Crafted for real spaces."
+              items={projects}
+              viewAllHref="/portfolio"
+            />
           </Reveal>
-
-          {projects.map((p, i) => (
-            <Reveal
-              key={p.n}
-              delay={i * 90}
-              className={`${styles.projectRow} ${i % 2 === 1 ? styles.projectRowFlip : ""}`}
-            >
-              <div className={styles.projectImageWrap}>
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 62vw"
-                  className={styles.projectImage}
-                  style={{ objectPosition: p.position }}
-                />
-              </div>
-              <div className={styles.projectCopy}>
-                <span className={styles.projectNum}>{p.n}</span>
-                <h3 className={styles.projectTitle}>{p.title}</h3>
-                <p className={styles.projectText}>{p.text}</p>
-              </div>
-            </Reveal>
-          ))}
-
           <Reveal className={styles.projectsFoot}>
             <Link href="/portfolio" className="btn btn-outline">
               View full portfolio <span className="btn-arrow">→</span>
@@ -260,39 +217,25 @@ export default function Home() {
 
       <section className={styles.process}>
         <div className="container">
-          <div className={styles.processGrid}>
-            <Reveal className={styles.processArt}>
-              <div className={styles.processImageWrap}>
-                <Image
-                  src="/images/ottoman-boucle-stacked.jpg"
-                  alt="Stacked drum ottoman upholstered in ivory boucle"
-                  fill
-                  sizes="(max-width: 900px) 100vw, 34vw"
-                  className={styles.processImage}
-                  style={{ objectPosition: "50% 40%" }}
-                />
+          <Reveal className={styles.processHead}>
+            <p className="eyebrow">Made for you</p>
+            <h2 className={styles.processHeading}>Not limited to what&apos;s in a showroom.</h2>
+          </Reveal>
+          <div className={styles.processRow}>
+            {processSteps.map((step, i) => (
+              <div key={step.n} className={styles.processStepWrap}>
+                <Reveal delay={i * 80} className={styles.processStep}>
+                  <span className={styles.processIcon}>
+                    <step.icon />
+                  </span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </Reveal>
+                {i < processSteps.length - 1 && (
+                  <span className={styles.processArrow} aria-hidden="true">→</span>
+                )}
               </div>
-            </Reveal>
-            <Reveal delay={100} className={styles.processCopy}>
-              <p className="eyebrow">Made for you</p>
-              <h2 className={styles.processHeading}>Not limited to what&apos;s in a showroom.</h2>
-              <p className={styles.processLede}>
-                Choose the size, shape, colour, fabric and level of comfort. We review
-                the details with you, take measurements where needed, and recommend
-                materials suited to the space and how the piece will actually be used.
-              </p>
-              <ol className={styles.processSteps}>
-                {processSteps.map((step) => (
-                  <li key={step.n} className={styles.processStep}>
-                    <span>{step.n}</span>
-                    <div>
-                      <h3>{step.title}</h3>
-                      <p>{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </Reveal>
+            ))}
           </div>
         </div>
       </section>

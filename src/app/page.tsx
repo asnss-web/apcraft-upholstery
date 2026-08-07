@@ -116,13 +116,8 @@ export default function Home() {
         <div className={styles.heroScrimLeft} />
         <div className={`container ${styles.heroContent}`}>
           <p className={styles.heroEyebrow}>Custom Upholstery · Toronto &amp; GTA</p>
-          <h1 className={styles.heroHeading}>
-            Furniture made around
-            <br className={styles.heroBreak} />
-            {" "}your space, your style,
-            <br className={styles.heroBreak} />
-            {" "}your life.
-          </h1>
+          <h1 className={styles.heroHeading}>A.P Upholstery</h1>
+          <p className={styles.heroSubhead}>Furniture made around your space, your style, your life.</p>
           <div className={styles.heroActions}>
             <Link href="/quote" className="btn btn-primary">
               Get a Quote <span className="btn-arrow">→</span>

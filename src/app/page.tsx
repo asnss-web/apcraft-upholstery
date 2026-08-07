@@ -113,9 +113,7 @@ export default function Home() {
         />
         <div className={styles.heroScrimTop} />
         <div className={styles.heroScrimBottom} />
-        <div className={styles.heroWordmark} aria-hidden="true">
-          <span>A.P Upholstery</span>
-        </div>
+        <div className={styles.heroScrimLeft} />
         <div className={`container ${styles.heroContent}`}>
           <p className={styles.heroEyebrow}>Custom Upholstery · Toronto &amp; GTA</p>
           <h1 className={styles.heroHeading}>

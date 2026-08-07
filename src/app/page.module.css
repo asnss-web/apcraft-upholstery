@@ -26,30 +26,13 @@
   pointer-events: none;
 }
 
-/* faint centered wordmark in the clear space above the headline — a quiet
-   branding flourish behind the readable content, the way ALO uses its
-   logotype as a background texture, sized to never touch the headline */
-.heroWordmark {
+/* extra darkening on the left, under the left-aligned headline/copy, so
+   the text stays readable regardless of what's in the photo there */
+.heroScrimLeft {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: clamp(96px, 14vh, 180px);
+  background: linear-gradient(90deg, rgba(14, 12, 10, 0.5) 0%, rgba(14, 12, 10, 0.22) 32%, transparent 62%);
   pointer-events: none;
-}
-.heroWordmark span {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(2.2rem, 6vw, 4.4rem);
-  letter-spacing: 0.03em;
-  color: rgba(255, 255, 255, 0.14);
-  white-space: nowrap;
-}
-
-@media (max-height: 760px), (max-width: 640px) {
-  .heroWordmark { display: none; }
 }
 
 .heroContent {

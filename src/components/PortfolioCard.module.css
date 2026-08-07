@@ -1,7 +1,4 @@
-.card {
-  background: var(--card);
-  box-shadow: var(--shadow-card);
-}
+.card {}
 
 .imageWrap {
   position: relative;
@@ -16,19 +13,20 @@
 }
 .card:hover .image { transform: scale(1.04); }
 
-.body { padding: 20px 22px 24px; }
+.body { padding-top: 16px; }
 
 .category {
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--sage-dark);
+  color: var(--accent-dark);
   margin-bottom: 8px;
 }
 
 .title {
   font-family: var(--serif);
+  font-weight: 500;
   font-size: 1.2rem;
   color: var(--ink);
   margin-bottom: 8px;

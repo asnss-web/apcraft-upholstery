@@ -36,6 +36,8 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  max-width: 100%;
+  padding: 0 clamp(16px, 4vw, 48px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,14 +47,18 @@
 .heroHeading {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(3.4rem, 9vw, 7.5rem);
-  line-height: 1;
+  font-size: clamp(3rem, 15vw, 13rem);
+  line-height: 0.94;
   letter-spacing: -0.01em;
   color: #fff;
 }
 
+@media (min-width: 760px) {
+  .heroHeading { white-space: nowrap; }
+}
+
 .heroSubhead {
-  margin-top: 22px;
+  margin-top: clamp(28px, 5vw, 56px);
   font-family: var(--sans);
   font-size: 0.82rem;
   font-weight: 600;
@@ -71,11 +77,18 @@
   font-size: 0.9rem;
   color: var(--ink);
   background: var(--paper);
+  border: 1px solid var(--paper);
   padding: 15px 28px;
   border-radius: 2px;
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
-.heroCta:hover { background: #fff; transform: translateY(-1px); }
+.heroCta:hover {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.55);
+}
 .heroCta:hover .btn-arrow { transform: translateX(4px); }
 
 /* ==================== editorial intro ==================== */

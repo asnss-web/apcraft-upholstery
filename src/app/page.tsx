@@ -103,7 +103,7 @@ export default function Home() {
         />
         <div className={styles.heroScrimTop} />
         <div className={styles.heroScrimBottom} />
-        <div className={`container ${styles.heroContent}`}>
+        <div className={styles.heroContent}>
           <h1 className={styles.heroHeading}>A.P Upholstery</h1>
           <p className={styles.heroSubhead}>Furniture made around your space, your style, your life.</p>
           <Link href="/quote" className={styles.heroCta}>

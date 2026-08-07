@@ -6,10 +6,12 @@ export default function CtaBanner({
   heading,
   lede,
   showWhatsapp = false,
+  note,
 }: {
   heading: React.ReactNode;
   lede?: string;
   showWhatsapp?: boolean;
+  note?: string;
 }) {
   return (
     <section className={styles.banner}>
@@ -36,6 +38,7 @@ export default function CtaBanner({
             </a>
           )}
         </div>
+        {note && <p className={styles.note}>{note}</p>}
       </div>
     </section>
   );

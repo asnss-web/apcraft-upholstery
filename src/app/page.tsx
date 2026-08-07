@@ -3,7 +3,9 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CtaBanner from "@/components/CtaBanner";
 import ScrollGallery from "@/components/ScrollGallery";
-import { ShareIcon, SwatchIcon, QuoteIcon, DeliveryIcon } from "@/components/ProcessIcons";
+import BeforeAfterCard from "@/components/BeforeAfterCard";
+import { ShareIcon, SwatchIcon, QuoteIcon, DeliveryIcon, ChairIcon, NeedleIcon, StorefrontIcon } from "@/components/ProcessIcons";
+import { beforeAfter } from "@/lib/portfolio";
 import styles from "./page.module.css";
 
 const projects = [
@@ -43,21 +45,21 @@ const services = [
     title: "Custom Upholstery",
     text: "Custom furniture made to fit your space, style and everyday needs.",
     href: "/services#custom",
-    image: "/images/chair-dining-navy-velvet.jpg",
+    icon: ChairIcon,
   },
   {
     n: "02",
     title: "Reupholstery",
     text: "Professional restoration and reupholstery for furniture worth keeping.",
     href: "/services#reupholstery",
-    image: "/images/sofa-family-room-sectional.jpg",
+    icon: NeedleIcon,
   },
   {
     n: "03",
     title: "Commercial Upholstery",
     text: "Durable custom seating and upholstery for restaurants, offices, hotels and other commercial interiors.",
     href: "/commercial",
-    image: "/images/commercial-booth-red-vinyl.jpg",
+    icon: StorefrontIcon,
   },
 ];
 
@@ -176,15 +178,9 @@ export default function Home() {
             {services.map((s, i) => (
               <Reveal key={s.n} delay={i * 70} className={styles.previewCard}>
                 <Link href={s.href} className={styles.previewLink}>
-                  <div className={styles.previewImageWrap}>
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      fill
-                      sizes="(max-width: 900px) 92vw, 30vw"
-                      className={styles.previewImage}
-                    />
-                  </div>
+                  <span className={styles.previewIcon}>
+                    <s.icon />
+                  </span>
                   <h3 className={styles.previewTitle}>{s.title}</h3>
                   <p className={styles.previewText}>{s.text}</p>
                   <span className={styles.previewCta}>
@@ -210,6 +206,32 @@ export default function Home() {
           <Reveal className={styles.projectsFoot}>
             <Link href="/portfolio" className="btn btn-outline">
               View full portfolio <span className="btn-arrow">→</span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className={styles.beforeAfter}>
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow">Before &amp; after</p>
+            <h2 className={styles.beforeAfterHeading}>A frame worth keeping is worth rebuilding.</h2>
+            <p className={`lede ${styles.beforeAfterLede}`}>
+              Vintage frames are usually better built than anything new at
+              the same price. We strip them to the wood, rebuild what&apos;s
+              broken, and re-dress them in fabric that fits how you actually live.
+            </p>
+          </Reveal>
+          <div className={styles.beforeAfterGrid}>
+            {beforeAfter.slice(0, 2).map((item, i) => (
+              <Reveal key={item.image} delay={i * 90}>
+                <BeforeAfterCard {...item} />
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className={styles.projectsFoot}>
+            <Link href="/portfolio#before-after" className="btn btn-outline">
+              See more transformations <span className="btn-arrow">→</span>
             </Link>
           </Reveal>
         </div>
@@ -274,6 +296,7 @@ export default function Home() {
         heading="Have a piece in mind?"
         lede="Send a few photos, rough measurements and a short description — we'll review the project and get back to you."
         showWhatsapp
+        note="Free, no-obligation quote — we reply personally, not with a form letter."
       />
     </>
   );

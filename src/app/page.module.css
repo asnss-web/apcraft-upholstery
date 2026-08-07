@@ -173,6 +173,32 @@
   justify-content: center;
 }
 
+/* ==================== before & after ==================== */
+.beforeAfter {
+  padding-top: clamp(64px, 8vw, 120px);
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+
+.beforeAfterHeading {
+  margin-top: 14px;
+  max-width: 640px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.1rem, 3.4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.beforeAfterLede { margin-top: 18px; }
+
+.beforeAfterGrid {
+  margin-top: clamp(40px, 6vw, 56px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 48px);
+}
+
 /* ==================== four key benefits ==================== */
 .benefits {
   padding-top: clamp(56px, 7vw, 96px);
@@ -250,24 +276,35 @@
   margin-top: clamp(40px, 6vw, 64px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(28px, 4vw, 44px);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
 
-.previewLink { display: block; }
+.previewLink {
+  display: block;
+  height: 100%;
+  background: var(--card);
+  padding: clamp(32px, 4vw, 44px) clamp(24px, 3vw, 36px);
+  transition: background 0.3s var(--ease);
+}
+.previewLink:hover { background: var(--paper); }
 
-.previewImageWrap {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
+.previewIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--accent-dark);
+  margin-bottom: 22px;
+  transition: border-color 0.3s var(--ease);
 }
-.previewImage {
-  object-fit: cover;
-  transition: transform 0.6s var(--ease);
-}
-.previewLink:hover .previewImage { transform: scale(1.03); }
+.previewLink:hover .previewIcon { border-color: var(--accent); }
 
 .previewTitle {
-  margin-top: 20px;
   font-family: var(--serif);
   font-weight: 500;
   font-size: 1.3rem;
@@ -475,6 +512,7 @@
 
   .benefitsGrid { grid-template-columns: 1fr; }
   .previewGrid { grid-template-columns: 1fr; }
+  .beforeAfterGrid { grid-template-columns: 1fr; }
 
   .collab { min-height: 74vh; }
   .collabContent { max-width: 100%; }

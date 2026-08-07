@@ -39,3 +39,10 @@
   font-size: 0.9rem;
   color: rgba(246, 241, 230, 0.4);
 }
+
+.note {
+  margin-top: 22px;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: rgba(246, 241, 230, 0.5);
+}

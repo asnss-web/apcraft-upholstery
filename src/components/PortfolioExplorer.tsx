@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import BeforeAfterCard from "@/components/BeforeAfterCard";
 import Reveal from "@/components/Reveal";
@@ -18,6 +18,19 @@ export default function PortfolioExplorer({
   beforeAfter: BeforeAfterItem[];
 }) {
   const [active, setActive] = useState<string>("all");
+
+  // deep-link support — /portfolio#before-after (or any category id)
+  // opens straight into that tab instead of always defaulting to "All".
+  // This reads a browser-only value (the URL hash) after mount, so
+  // syncing it into state via an effect is the correct pattern here,
+  // not a derivable-during-render value.
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash === "before-after" || categories.some((c) => c.id === hash)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setActive(hash);
+    }
+  }, [categories]);
 
   const tabs = useMemo(
     () => [

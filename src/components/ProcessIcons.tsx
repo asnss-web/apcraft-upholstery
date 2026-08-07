@@ -47,3 +47,35 @@ export function DeliveryIcon() {
     </svg>
   );
 }
+
+export function ChairIcon() {
+  return (
+    <svg viewBox="0 0 40 40" width="30" height="30" {...common}>
+      <path d="M11 6v18" />
+      <path d="M29 6v22" />
+      <path d="M11 6h18" />
+      <path d="M11 24h18v4a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4z" />
+    </svg>
+  );
+}
+
+export function NeedleIcon() {
+  return (
+    <svg viewBox="0 0 40 40" width="30" height="30" {...common}>
+      <path d="M8 31 27 12a3 3 0 0 1 4 4L12 35z" />
+      <circle cx="29" cy="10" r="2" />
+      <path d="M6 34l4-3" strokeDasharray="1 4" />
+    </svg>
+  );
+}
+
+export function StorefrontIcon() {
+  return (
+    <svg viewBox="0 0 40 40" width="30" height="30" {...common}>
+      <path d="M6 12l2-6h24l2 6" />
+      <path d="M6 12a3.5 3.5 0 0 0 7 0 3.5 3.5 0 0 0 7 0 3.5 3.5 0 0 0 7 0 3.5 3.5 0 0 0 7 0" />
+      <path d="M8 15v17h24V15" />
+      <path d="M17 32v-9h6v9" />
+    </svg>
+  );
+}

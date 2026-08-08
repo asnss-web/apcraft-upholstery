@@ -195,6 +195,13 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 .btn-ghost-light:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 
+.btn-accent {
+  background: var(--accent);
+  color: var(--paper);
+  border: 1px solid var(--accent);
+}
+.btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
 .btn-arrow {
   transition: transform 0.35s var(--ease);
 }

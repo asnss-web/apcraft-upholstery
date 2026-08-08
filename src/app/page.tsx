@@ -9,11 +9,11 @@ import { beforeAfter } from "@/lib/portfolio";
 import styles from "./page.module.css";
 
 const projects = [
-  { image: "/images/sofa-gray-sectional-corner.jpg", title: "Corner Sectional", position: "50% 42%" },
-  { image: "/images/chair-wingback-burgundy.jpg", title: "Wingback Restored", position: "50% 22%" },
-  { image: "/images/banquette-built-in-green.jpg", title: "Breakfast Banquette", position: "50% 68%" },
-  { image: "/images/bed-charcoal-chesterfield.jpg", title: "Chesterfield Bed", position: "50% 35%" },
-  { image: "/images/chaise-blue-patterned.jpg", title: "Patterned Bench", position: "50% 40%" },
+  { image: "/images/sofa-gray-sectional-corner.jpg", title: "Corner Sectional", position: "50% 42%", ratio: "4 / 5" },
+  { image: "/images/chair-wingback-burgundy.jpg", title: "Wingback Restored", position: "50% 22%", ratio: "3 / 4" },
+  { image: "/images/banquette-built-in-green.jpg", title: "Breakfast Banquette", position: "50% 68%", ratio: "4 / 3" },
+  { image: "/images/bed-charcoal-chesterfield.jpg", title: "Chesterfield Bed", position: "50% 35%", ratio: "3 / 4" },
+  { image: "/images/chaise-blue-patterned.jpg", title: "Patterned Bench", position: "50% 40%", ratio: "1 / 1" },
 ];
 
 const benefits = [

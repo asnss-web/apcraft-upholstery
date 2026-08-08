@@ -38,6 +38,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(230px, 1fr);
+  align-items: start;
   gap: 24px;
   overflow-x: auto;
   scroll-snap-type: x proximity;
@@ -49,11 +50,11 @@
 .card {
   scroll-snap-align: start;
   display: block;
+  width: 100%;
 }
 
 .imageWrap {
   position: relative;
-  aspect-ratio: 3 / 4;
   overflow: hidden;
 }
 .image {

@@ -10,6 +10,9 @@ export type GalleryItem = {
   title: string;
   href?: string;
   position?: string;
+  /** aspect-ratio CSS value, e.g. "3 / 4" — varies the row's rhythm
+   *  instead of cropping every photo to the same shape */
+  ratio?: string;
 };
 
 export default function ScrollGallery({
@@ -49,7 +52,7 @@ export default function ScrollGallery({
       <div className={styles.row} ref={rowRef}>
         {items.map((item) => (
           <Link key={item.image} href={item.href ?? viewAllHref ?? "/portfolio"} className={styles.card} data-card>
-            <div className={styles.imageWrap}>
+            <div className={styles.imageWrap} style={{ aspectRatio: item.ratio ?? "3 / 4" }}>
               <Image
                 src={item.image}
                 alt={item.title}

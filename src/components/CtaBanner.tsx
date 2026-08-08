@@ -19,7 +19,7 @@ export default function CtaBanner({
         <h2 className={`h-lg ${styles.heading}`}>{heading}</h2>
         {lede && <p className={styles.lede}>{lede}</p>}
         <div className={styles.actions}>
-          <Link href="/quote" className="btn btn-ghost-light">
+          <Link href="/quote" className="btn btn-accent">
             Get a Quote <span className="btn-arrow">→</span>
           </Link>
           {showWhatsapp ? (

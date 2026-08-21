@@ -10,6 +10,8 @@
   background: var(--paper-deep);
   user-select: none;
   -webkit-user-select: none;
+  cursor: ew-resize;
+  touch-action: pan-y;
 }
 
 .image {
@@ -66,12 +68,19 @@
 .tagBefore { left: 16px; }
 .tagAfter { right: 16px; }
 
+/* Keyboard/screen-reader control only — pointer dragging is handled by
+   onPointerDown/move on .frame instead, since a native range input
+   stretched to fill the whole photo drags unreliably on some
+   trackpads/touch browsers once its thumb covers the entire track. */
 .range {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 32px;
   height: 100%;
-  margin: 0;
+  margin: 0 0 0 -16px;
+  padding: 0;
   opacity: 0;
   cursor: ew-resize;
   -webkit-appearance: none;
@@ -80,16 +89,18 @@
 }
 .range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 100%;
+  width: 32px;
   height: 100%;
 }
 .range::-moz-range-thumb {
-  width: 2px;
+  width: 32px;
   height: 100%;
   border: none;
   background: transparent;
 }
 .range:focus-visible {
+  opacity: 1;
   outline: 2px solid var(--accent);
   outline-offset: -2px;
+  background: rgba(255, 255, 255, 0.15);
 }

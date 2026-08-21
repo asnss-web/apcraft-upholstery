@@ -28,9 +28,9 @@ const workPhotos = [
 ];
 
 const highlights = [
-  { title: "10 years in the trade", text: "Trained in Europe, working across Canada." },
-  { title: "One set of hands", text: "The same upholsterer sees a piece through, start to finish." },
-  { title: "Made to order", text: "Every piece built to your size, fabric and finish." },
+  { n: "01", title: "10 years in the trade", text: "Trained in Europe, working across Canada." },
+  { n: "02", title: "One set of hands", text: "The same upholsterer sees a piece through, start to finish." },
+  { n: "03", title: "Made to order", text: "Every piece built to your size, fabric and finish." },
 ];
 
 export default function AboutPage() {
@@ -96,6 +96,7 @@ export default function AboutPage() {
         <div className={`container ${styles.highlights}`}>
           {highlights.map((h, i) => (
             <Reveal key={h.title} delay={i * 70} className={styles.highlight}>
+              <span className={styles.highlightNum}>{h.n}</span>
               <h3>{h.title}</h3>
               <p>{h.text}</p>
             </Reveal>

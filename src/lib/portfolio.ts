@@ -218,22 +218,30 @@ export const portfolioCategories: { id: string; label: string; items: PortfolioI
 
 export const beforeAfter = [
   {
-    image: "/images/ba-houndstooth-chair.jpg",
+    id: "houndstooth-armchair",
+    before: "/images/ba-houndstooth-chair-before.jpg",
+    after: "/images/ba-houndstooth-chair-after.jpg",
     title: "Houndstooth armchair",
     description: "A tired houndstooth accent chair, stripped and rebuilt in soft ivory boucle.",
   },
   {
-    image: "/images/ba-dining-chairs.jpg",
+    id: "oval-back-dining-chairs",
+    before: "/images/ba-dining-chairs-before.jpg",
+    after: "/images/ba-dining-chairs-after.jpg",
     title: "Oval-back dining chairs",
     description: "Torn dining chairs re-framed in black lacquer and re-covered in boucle.",
   },
   {
-    image: "/images/ba-gold-rococo-chair.jpg",
+    id: "gilt-frame-armchair",
+    before: "/images/ba-gold-rococo-chair-before.jpg",
+    after: "/images/ba-gold-rococo-chair-after.jpg",
     title: "Gilt-frame armchair",
     description: "A carved gold-leaf frame, re-dressed in fresh champagne velvet — the frame was worth keeping.",
   },
   {
-    image: "/images/ba-wood-bench.jpg",
+    id: "entryway-bench",
+    before: "/images/ba-wood-bench-before.jpg",
+    after: "/images/ba-wood-bench-after.jpg",
     title: "Entryway bench",
     description: "A cracked vinyl-top bench brought back with a new leather top, grain and all.",
   },

@@ -1,22 +1,20 @@
-import Image from "next/image";
+import BeforeAfterSlider from "./BeforeAfterSlider";
 import styles from "./BeforeAfterCard.module.css";
 
 export default function BeforeAfterCard({
-  image,
+  before,
+  after,
   title,
   description,
 }: {
-  image: string;
+  before: string;
+  after: string;
   title: string;
   description: string;
 }) {
   return (
     <article className={styles.card}>
-      <div className={styles.imageFrame}>
-        <div className={styles.imageWrap}>
-          <Image src={image} alt={`${title} — before and after`} fill sizes="(max-width: 760px) 92vw, 46vw" className={styles.image} />
-        </div>
-      </div>
+      <BeforeAfterSlider before={before} after={after} title={title} />
       <div className={styles.body}>
         <span className={styles.pill}>Before → After</span>
         <h3 className={styles.title}>{title}</h3>

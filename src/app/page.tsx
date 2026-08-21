@@ -46,6 +46,8 @@ const services = [
     text: "Custom furniture made to fit your space, style and everyday needs.",
     href: "/services#custom",
     icon: ChairIcon,
+    image: "/images/banquette-built-in-green.jpg",
+    position: "50% 40%",
   },
   {
     n: "02",
@@ -53,6 +55,8 @@ const services = [
     text: "Professional restoration and reupholstery for furniture worth keeping.",
     href: "/services#reupholstery",
     icon: NeedleIcon,
+    image: "/images/chair-wingback-burgundy.jpg",
+    position: "50% 25%",
   },
   {
     n: "03",
@@ -60,6 +64,8 @@ const services = [
     text: "Durable custom seating and upholstery for restaurants, offices, hotels and other commercial interiors.",
     href: "/commercial",
     icon: StorefrontIcon,
+    image: "/images/commercial-salon-leather-booth.jpg",
+    position: "40% 55%",
   },
 ];
 
@@ -178,13 +184,25 @@ export default function Home() {
             {services.map((s, i) => (
               <Reveal key={s.n} delay={i * 70} className={styles.previewCard}>
                 <Link href={s.href} className={styles.previewLink}>
-                  <span className={styles.previewIcon}>
-                    <s.icon />
-                  </span>
-                  <h3 className={styles.previewTitle}>{s.title}</h3>
-                  <p className={styles.previewText}>{s.text}</p>
-                  <span className={styles.previewCta}>
-                    Learn more <span className="btn-arrow">→</span>
+                  <span className={styles.previewNum}>{s.n}</span>
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width: 900px) 92vw, 30vw"
+                    className={styles.previewImage}
+                    style={{ objectPosition: s.position }}
+                  />
+                  <span className={styles.previewScrim} />
+                  <span className={styles.previewBody}>
+                    <span className={styles.previewIcon}>
+                      <s.icon />
+                    </span>
+                    <h3 className={styles.previewTitle}>{s.title}</h3>
+                    <p className={styles.previewText}>{s.text}</p>
+                    <span className={styles.previewCta}>
+                      Learn more <span className="btn-arrow">→</span>
+                    </span>
                   </span>
                 </Link>
               </Reveal>
@@ -224,7 +242,7 @@ export default function Home() {
           </Reveal>
           <div className={styles.beforeAfterGrid}>
             {beforeAfter.slice(0, 2).map((item, i) => (
-              <Reveal key={item.image} delay={i * 90}>
+              <Reveal key={item.id} delay={i * 90}>
                 <BeforeAfterCard {...item} />
               </Reveal>
             ))}

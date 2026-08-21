@@ -1,0 +1,95 @@
+.wrap {
+  transition: box-shadow 0.5s var(--ease);
+}
+.wrap:hover { box-shadow: var(--shadow-lift); }
+
+.frame {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: var(--paper-deep);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.beforeLayer {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.divider {
+  position: absolute;
+  inset: 0 0 0 var(--pos);
+  width: 2px;
+  background: rgba(250, 248, 243, 0.9);
+  box-shadow: 0 0 0 1px rgba(37, 35, 31, 0.15);
+  pointer-events: none;
+  transform: translateX(-1px);
+}
+
+.grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 6px 20px -6px rgba(33, 29, 25, 0.5);
+}
+
+.tag {
+  position: absolute;
+  top: 16px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(37, 35, 31, 0.55);
+  padding: 6px 12px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.tagBefore { left: 16px; }
+.tagAfter { right: 16px; }
+
+.range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+}
+.range::-moz-range-thumb {
+  width: 2px;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+.range:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}

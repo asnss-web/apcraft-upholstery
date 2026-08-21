@@ -8,7 +8,7 @@ import type { PortfolioItem } from "@/lib/portfolio";
 import styles from "./PortfolioExplorer.module.css";
 
 type Category = { id: string; label: string; items: PortfolioItem[] };
-type BeforeAfterItem = { image: string; title: string; description: string };
+type BeforeAfterItem = { id: string; before: string; after: string; title: string; description: string };
 
 export default function PortfolioExplorer({
   categories,
@@ -88,7 +88,7 @@ export default function PortfolioExplorer({
           <div className="container">
             <div className={styles.baGrid}>
               {beforeAfter.map((item, i) => (
-                <Reveal key={item.image} delay={i * 80}>
+                <Reveal key={item.id} delay={i * 80}>
                   <BeforeAfterCard {...item} />
                 </Reveal>
               ))}

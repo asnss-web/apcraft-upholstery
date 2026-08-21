@@ -171,22 +171,24 @@ input, textarea, select { font: inherit; color: inherit; }
   letter-spacing: 0.01em;
   padding: 15px 26px;
   border-radius: 2px;
-  transition: transform 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
   white-space: nowrap;
 }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
 
 .btn-primary {
   background: var(--ink);
   color: var(--paper);
 }
-.btn-primary:hover { background: var(--clay-dark); }
+.btn-primary:hover { background: var(--clay-dark); box-shadow: var(--shadow-lift); }
 
 .btn-outline {
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--ink);
 }
-.btn-outline:hover { background: var(--ink); color: var(--paper); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); box-shadow: var(--shadow-lift); }
 
 .btn-ghost-light {
   background: transparent;
@@ -200,7 +202,7 @@ input, textarea, select { font: inherit; color: inherit; }
   color: var(--paper);
   border: 1px solid var(--accent);
 }
-.btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); box-shadow: var(--shadow-lift); }
 
 .btn-arrow {
   transition: transform 0.35s var(--ease);

@@ -12,8 +12,10 @@ export default function BeforeAfterCard({
 }) {
   return (
     <article className={styles.card}>
-      <div className={styles.imageWrap}>
-        <Image src={image} alt={`${title} — before and after`} fill sizes="(max-width: 760px) 92vw, 46vw" className={styles.image} />
+      <div className={styles.imageFrame}>
+        <div className={styles.imageWrap}>
+          <Image src={image} alt={`${title} — before and after`} fill sizes="(max-width: 760px) 92vw, 46vw" className={styles.image} />
+        </div>
       </div>
       <div className={styles.body}>
         <span className={styles.pill}>Before → After</span>

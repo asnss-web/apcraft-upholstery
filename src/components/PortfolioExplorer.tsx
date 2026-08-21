@@ -25,11 +25,18 @@ export default function PortfolioExplorer({
   // syncing it into state via an effect is the correct pattern here,
   // not a derivable-during-render value.
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash === "before-after" || categories.some((c) => c.id === hash)) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setActive(hash);
+    function syncToHash() {
+      const hash = window.location.hash.replace("#", "");
+      if (hash === "before-after" || categories.some((c) => c.id === hash)) {
+        setActive(hash);
+      }
     }
+    syncToHash();
+    // also respond to in-page hash changes (e.g. a "#before-after" link
+    // clicked while already on /portfolio, which Next's router treats as
+    // a same-document navigation rather than a fresh mount)
+    window.addEventListener("hashchange", syncToHash);
+    return () => window.removeEventListener("hashchange", syncToHash);
   }, [categories]);
 
   const tabs = useMemo(

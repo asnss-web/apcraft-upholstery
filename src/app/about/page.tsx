@@ -81,8 +81,10 @@ export default function AboutPage() {
           <Reveal delay={100} className={styles.photoCol}>
             <div className={styles.photoGrid}>
               {workPhotos.map((src) => (
-                <div key={src} className={styles.photoWrap}>
-                  <Image src={src} alt="A.P Craft Upholstery project" fill sizes="(max-width: 760px) 45vw, 22vw" className={styles.photoImg} style={{ objectFit: "cover" }} />
+                <div key={src} className={styles.photoFrame}>
+                  <div className={styles.photoWrap}>
+                    <Image src={src} alt="A.P Craft Upholstery project" fill sizes="(max-width: 760px) 45vw, 22vw" className={styles.photoImg} style={{ objectFit: "cover" }} />
+                  </div>
                 </div>
               ))}
             </div>

@@ -52,15 +52,17 @@ export default function ScrollGallery({
       <div className={styles.row} ref={rowRef}>
         {items.map((item) => (
           <Link key={item.image} href={item.href ?? viewAllHref ?? "/portfolio"} className={styles.card} data-card>
-            <div className={styles.imageWrap} style={{ aspectRatio: item.ratio ?? "3 / 4" }}>
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                sizes="(max-width: 760px) 70vw, 22vw"
-                className={styles.image}
-                style={item.position ? { objectPosition: item.position } : undefined}
-              />
+            <div className={styles.imageFrame}>
+              <div className={styles.imageWrap} style={{ aspectRatio: item.ratio ?? "3 / 4" }}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 760px) 70vw, 22vw"
+                  className={styles.image}
+                  style={item.position ? { objectPosition: item.position } : undefined}
+                />
+              </div>
             </div>
             <p className={styles.caption}>
               {item.title} <span className="btn-arrow">→</span>

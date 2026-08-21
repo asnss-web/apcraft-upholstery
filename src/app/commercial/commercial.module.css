@@ -33,6 +33,11 @@
   gap: 20px;
 }
 
+.galleryFrame {
+  transition: box-shadow 0.5s var(--ease);
+}
+.galleryItem:hover .galleryFrame { box-shadow: var(--shadow-lift); }
+
 .galleryImageWrap {
   position: relative;
   aspect-ratio: 4 / 3;

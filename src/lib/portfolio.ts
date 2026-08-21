@@ -4,6 +4,9 @@ export type PortfolioItem = {
   description: string;
   swatch: string;
   category: string;
+  /** optional object-position override — for photos where the default
+   *  center crop lands on something distracting (a fixture, a cable) */
+  position?: string;
 };
 
 export const portfolioCategories: { id: string; label: string; items: PortfolioItem[] }[] = [
@@ -87,6 +90,20 @@ export const portfolioCategories: { id: string; label: string; items: PortfolioI
         swatch: "#e5e0d2",
         category: "Chairs",
       },
+      {
+        image: "/images/chair-antique-brocade.jpg",
+        title: "Antique brocade armchairs",
+        description: "A pair of carved wood armchairs re-dressed in a pale damask brocade, set by a sunlit window.",
+        swatch: "#d7d3c0",
+        category: "Chairs",
+      },
+      {
+        image: "/images/chair-barstools-white.jpg",
+        title: "Kitchen island barstools",
+        description: "A set of counter-height barstools re-covered in white performance leather for a busy family kitchen.",
+        swatch: "#e9e7e2",
+        category: "Chairs",
+      },
     ],
   },
   {
@@ -94,7 +111,7 @@ export const portfolioCategories: { id: string; label: string; items: PortfolioI
     label: "Beds & Headboards",
     items: [
       {
-        image: "/images/bed-beige-tufted-panel.jpg",
+        image: "/images/hero-beige-bed-cropped.jpg",
         title: "Channel-tufted panel bed",
         description: "A wall-to-wall channel-tufted headboard, upholstered to fit the room exactly.",
         swatch: "#cabfa8",

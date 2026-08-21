@@ -53,6 +53,11 @@
   width: 100%;
 }
 
+.imageFrame {
+  transition: box-shadow 0.5s var(--ease);
+}
+.card:hover .imageFrame { box-shadow: var(--shadow-lift); }
+
 .imageWrap {
   position: relative;
   overflow: hidden;

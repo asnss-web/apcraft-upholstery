@@ -95,13 +95,13 @@ export default function Home() {
     <>
       <section className={styles.hero}>
         <Image
-          src="/images/bed-beige-tufted-panel.jpg"
+          src="/images/hero-beige-bed-cropped.jpg"
           alt="Custom channel-tufted headboard and platform bed, upholstered by A.P Craft"
           fill
           priority
           sizes="100vw"
           className={styles.heroImage}
-          style={{ objectPosition: "50% 62%" }}
+          style={{ objectPosition: "50% 50%" }}
         />
         <div className={styles.heroScrimTop} />
         <div className={styles.heroScrimBottom} />

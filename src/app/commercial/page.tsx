@@ -56,16 +56,18 @@ export default function CommercialPage() {
           <Reveal>
             <SectionIntro
               eyebrow="What we build for businesses"
-              heading="Transforming commercial spaces with premium upholstery."
-              lede="From office seating and restaurant booths to hotel lounges and waiting areas, we deliver stylish, durable, and functional furniture designed to elevate your brand and withstand everyday use."
+              heading="Seating built for the volume a business puts on it."
+              lede="Restaurant booths, salon benches, hotel lounges and office seating — each piece is built to your layout in contract-grade materials, so it still looks sharp after a full season of daily use."
             />
           </Reveal>
           <div className={styles.gallery}>
             {gallery.map((g, i) => (
               <Reveal key={g.image} delay={i * 60}>
                 <div className={styles.galleryItem}>
-                  <div className={styles.galleryImageWrap}>
-                    <Image src={g.image} alt={g.label} fill sizes="(max-width: 760px) 92vw, 30vw" style={{ objectFit: "cover" }} />
+                  <div className={styles.galleryFrame}>
+                    <div className={styles.galleryImageWrap}>
+                      <Image src={g.image} alt={g.label} fill sizes="(max-width: 760px) 92vw, 30vw" style={{ objectFit: "cover" }} />
+                    </div>
                   </div>
                   <p className={styles.galleryLabel}>{g.label}</p>
                 </div>

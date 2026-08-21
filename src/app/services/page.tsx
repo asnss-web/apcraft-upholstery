@@ -107,8 +107,10 @@ export default function ServicesPage() {
               { src: "/images/commercial-salon-leather-booth.jpg", label: "Vinyl & leather" },
             ].map((m, i) => (
               <Reveal key={m.src} delay={i * 70} className={styles.materialItem}>
-                <div className={styles.materialImageWrap}>
-                  <Image src={m.src} alt={`${m.label} fabric shown on a finished piece`} fill sizes="(max-width: 760px) 92vw, 30vw" style={{ objectFit: "cover" }} />
+                <div className={styles.materialFrame}>
+                  <div className={styles.materialImageWrap}>
+                    <Image src={m.src} alt={`${m.label} fabric shown on a finished piece`} fill sizes="(max-width: 760px) 92vw, 30vw" style={{ objectFit: "cover" }} />
+                  </div>
                 </div>
                 <p className={styles.materialLabel}>{m.label}</p>
               </Reveal>

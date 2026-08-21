@@ -5,8 +5,17 @@ import styles from "./PortfolioCard.module.css";
 export default function PortfolioCard({ item }: { item: PortfolioItem }) {
   return (
     <article className={styles.card}>
-      <div className={styles.imageWrap}>
-        <Image src={item.image} alt={item.title} fill sizes="(max-width: 760px) 92vw, (max-width: 1100px) 45vw, 30vw" className={styles.image} />
+      <div className={styles.imageFrame}>
+        <div className={styles.imageWrap}>
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            sizes="(max-width: 760px) 92vw, (max-width: 1100px) 45vw, 30vw"
+            className={styles.image}
+            style={item.position ? { objectPosition: item.position } : undefined}
+          />
+        </div>
       </div>
       <div className={styles.body}>
         <p className={styles.category}>{item.category}</p>

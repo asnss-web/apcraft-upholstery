@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
@@ -7,6 +8,10 @@ import BeforeAfterCard from "@/components/BeforeAfterCard";
 import { ShareIcon, SwatchIcon, QuoteIcon, DeliveryIcon, ChairIcon, NeedleIcon, StorefrontIcon } from "@/components/ProcessIcons";
 import { beforeAfter } from "@/lib/portfolio";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const projects = [
   { image: "/images/sofa-gray-sectional-corner.jpg", title: "Corner Sectional", position: "50% 42%", ratio: "4 / 5" },

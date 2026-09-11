@@ -5,6 +5,7 @@ import { studio } from "@/lib/content";
 import styles from "./quote.module.css";
 
 type Service = "Custom Upholstery" | "Reupholstery" | "Commercial Upholstery" | "Not Sure" | "";
+type Status = "idle" | "sending" | "sent" | "mailto" | "error";
 
 const projectTypes = [
   "Sofa / Sectional",
@@ -25,10 +26,56 @@ const referralSources = [
   "Other",
 ];
 
+// Vercel caps a function's request body at 4.5 MB, so photos are resized in the
+// browser and the whole batch has to fit under this budget.
+const MAX_FILES = 8;
+const MAX_TOTAL_BYTES = 4 * 1024 * 1024;
+const MAX_EDGE = 1800;
+
+async function shrinkImage(file: File): Promise<File> {
+  if (!file.type.startsWith("image/")) return file;
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    canvas.getContext("2d")?.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.82));
+    if (!blob || blob.size >= file.size) return file;
+    return new File([blob], `${file.name.replace(/\.[^.]+$/, "")}.jpg`, { type: "image/jpeg" });
+  } catch {
+    // formats the browser can't decode (e.g. HEIC outside Safari) are sent as-is
+    return file;
+  }
+}
+
+// Used only while RESEND_API_KEY isn't configured — hands the request to the visitor's mail app.
+function openMailDraft(data: FormData, fileCount: number) {
+  const get = (key: string) => String(data.get(key) ?? "");
+  const subject = `Quote request — ${get("firstName")} ${get("lastName")}`.trim();
+  const bodyLines = [
+    `Name: ${get("firstName")} ${get("lastName")}`,
+    `Email: ${get("email")}`,
+    get("phone") ? `Phone: ${get("phone")}` : null,
+    get("service") ? `Service: ${get("service")}` : null,
+    get("projectType") ? `Project type: ${get("projectType")}` : null,
+    get("heardFrom") ? `How they heard about us: ${get("heardFrom")}` : null,
+    "",
+    "Message:",
+    get("message"),
+    fileCount ? `\n(${fileCount} photo${fileCount > 1 ? "s" : ""} selected — please attach them to this email before sending.)` : null,
+  ].filter((line) => line !== null);
+
+  window.location.href = `mailto:${studio.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+}
+
 export default function QuoteForm() {
   const [service, setService] = useState<Service>("");
   const [files, setFiles] = useState<File[]>([]);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
 
   function addFiles(list: FileList | null) {
     if (!list) return;
@@ -39,39 +86,70 @@ export default function QuoteForm() {
     setFiles((prev) => prev.filter((_, i) => i !== index));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function fail(message: string) {
+    setStatus("error");
+    setError(message);
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
 
     // honeypot — if this hidden field is filled, a bot filled the form
-    const honeypot = (e.currentTarget.elements.namedItem("company") as HTMLInputElement)?.value;
-    if (honeypot) return;
+    if (data.get("company")) return;
 
-    const data = new FormData(e.currentTarget);
-    const firstName = data.get("firstName") as string;
-    const lastName = data.get("lastName") as string;
-    const email = data.get("email") as string;
-    const phone = data.get("phone") as string;
-    const projectType = data.get("projectType") as string;
-    const heardFrom = data.get("heardFrom") as string;
-    const message = data.get("message") as string;
+    if (files.length > MAX_FILES) {
+      fail(`Please attach up to ${MAX_FILES} files — you can send the rest to ${studio.email}.`);
+      return;
+    }
 
-    const subject = `Quote request — ${firstName} ${lastName}`.trim();
-    const bodyLines = [
-      `Name: ${firstName} ${lastName}`,
-      `Email: ${email}`,
-      phone ? `Phone: ${phone}` : null,
-      service ? `Service: ${service}` : null,
-      projectType ? `Project type: ${projectType}` : null,
-      heardFrom ? `How they heard about us: ${heardFrom}` : null,
-      "",
-      "Message:",
-      message,
-      files.length ? `\n(${files.length} photo${files.length > 1 ? "s" : ""} selected — please attach them to this email before sending.)` : null,
-    ].filter(Boolean);
+    setStatus("sending");
+    setError("");
 
-    window.location.href = `mailto:${studio.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-    setSent(true);
+    const photos = await Promise.all(files.map(shrinkImage));
+    const totalBytes = photos.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes > MAX_TOTAL_BYTES) {
+      fail(`Those files are too large to send together. Remove a few, then email the rest to ${studio.email}.`);
+      return;
+    }
+    photos.forEach((photo) => data.append("photos", photo));
+
+    try {
+      const res = await fetch("/api/quote", { method: "POST", body: data });
+      if (res.status === 503) {
+        openMailDraft(data, files.length);
+        setStatus("mailto");
+        return;
+      }
+      if (!res.ok) throw new Error(`Quote request failed with ${res.status}`);
+      form.reset();
+      setService("");
+      setFiles([]);
+      setStatus("sent");
+    } catch {
+      fail(`Something went wrong sending your request. Please try again, or call ${studio.phone} or email ${studio.email}.`);
+    }
   }
+
+  if (status === "sent") {
+    return (
+      <div className={`${styles.form} ${styles.thanks}`} role="status">
+        <p className="eyebrow">Request received</p>
+        <h2 className={`h-md ${styles.thanksHeading}`}>Thank you — your request is in.</h2>
+        <p className="body-copy">
+          We&apos;ll review the details and photos and contact you as soon as
+          possible. If anything is urgent, call us at{" "}
+          <a href={studio.phoneHref}>{studio.phone}</a>.
+        </p>
+        <button type="button" className="btn btn-outline" onClick={() => setStatus("idle")}>
+          Send another request
+        </button>
+      </div>
+    );
+  }
+
+  const sending = status === "sending";
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -81,22 +159,22 @@ export default function QuoteForm() {
       <div className={styles.fieldRow}>
         <label className={styles.field}>
           <span>First Name <em>(required)</em></span>
-          <input name="firstName" type="text" required />
+          <input name="firstName" type="text" autoComplete="given-name" required />
         </label>
         <label className={styles.field}>
           <span>Last Name <em>(required)</em></span>
-          <input name="lastName" type="text" required />
+          <input name="lastName" type="text" autoComplete="family-name" required />
         </label>
       </div>
 
       <div className={styles.fieldRow}>
         <label className={styles.field}>
           <span>Email <em>(required)</em></span>
-          <input name="email" type="email" required />
+          <input name="email" type="email" autoComplete="email" required />
         </label>
         <label className={styles.field}>
           <span>Phone</span>
-          <input name="phone" type="tel" />
+          <input name="phone" type="tel" autoComplete="tel" />
         </label>
       </div>
 
@@ -150,7 +228,10 @@ export default function QuoteForm() {
             type="file"
             multiple
             accept=".jpg,.jpeg,.png,.heic,.pdf,image/*,application/pdf"
-            onChange={(e) => addFiles(e.target.files)}
+            onChange={(e) => {
+              addFiles(e.target.files);
+              e.target.value = "";
+            }}
           />
           <span>Choose photos or files <span className="btn-arrow">→</span></span>
         </label>
@@ -169,9 +250,9 @@ export default function QuoteForm() {
         )}
 
         <p className={styles.uploadNote}>
-          This form opens an email to send your request — attach the files
-          you&apos;ve selected above to that email before sending, or send
-          them directly to <a href={`mailto:${studio.email}`}>{studio.email}</a>.
+          Up to {MAX_FILES} files — photos are resized automatically before
+          sending. Have more? Send them to{" "}
+          <a href={`mailto:${studio.email}`}>{studio.email}</a>.
         </p>
       </div>
 
@@ -190,18 +271,20 @@ export default function QuoteForm() {
         <span>I agree to be contacted by A.P Craft Upholstery about my project.</span>
       </label>
 
-      <button type="submit" className="btn btn-primary" style={{ marginTop: 8 }}>
-        Request My Quote <span className="btn-arrow">→</span>
+      <button type="submit" className="btn btn-primary" style={{ marginTop: 8 }} disabled={sending}>
+        {sending ? "Sending…" : <>Request My Quote <span className="btn-arrow">→</span></>}
       </button>
 
-      {sent && (
-        <p className={styles.sentNote}>
-          Thank you. Your request has been received. We will review the
-          details and contact you as soon as possible. If your email app
-          didn&apos;t open, reach us directly at{" "}
-          <a href={`mailto:${studio.email}`}>{studio.email}</a>.
-        </p>
-      )}
+      <div aria-live="polite">
+        {status === "error" && <p className={styles.errorNote} role="alert">{error}</p>}
+        {status === "mailto" && (
+          <p className={styles.sentNote}>
+            Your email app should now be open with the request filled in —
+            attach any photos and press send. If it didn&apos;t open, reach us
+            directly at <a href={`mailto:${studio.email}`}>{studio.email}</a>.
+          </p>
+        )}
+      </div>
     </form>
   );
 }

@@ -4,7 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MobileStickyCta from "@/components/MobileStickyCta";
-import { studio } from "@/lib/content";
+import { siteUrl, studio } from "@/lib/content";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -22,6 +22,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "A.P Craft Upholstery — Custom Upholstery & Reupholstery in Vaughan & the GTA",
   description:
     "Hand-built reupholstery, custom furniture and commercial seating out of our Vaughan workshop. Serving Toronto and the GTA — homes, restaurants, salons and hotels.",
@@ -30,14 +31,19 @@ export const metadata: Metadata = {
     description:
       "Custom upholstery, reupholstery and commercial seating — built by hand in Vaughan, for Toronto and the GTA.",
     type: "website",
+    siteName: studio.name,
+    locale: "en_CA",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   name: studio.name,
-  image: "https://ap-craft.vercel.app/images/logo-v2.png",
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo-v2.png`,
+  image: `${siteUrl}/opengraph-image.jpg`,
   telephone: studio.phone,
   email: studio.email,
   address: {

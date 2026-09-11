@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       <div className={`container ${styles.wrap}`}>
         <p className="eyebrow">Privacy Policy</p>
         <h1 className={`h-lg ${styles.heading}`}>Privacy Policy</h1>
-        <p className={styles.updated}>Last updated: {new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long" })}</p>
+        <p className={styles.updated}>Last updated: September 2026</p>
 
         <div className={styles.body}>
           <p>
@@ -30,8 +30,9 @@ export default function PrivacyPage() {
             communicate with you about your project.
           </p>
           <p>
-            We may use privacy-respecting analytics tools to understand how
-            visitors use this website, which does not identify you personally.
+            Requests sent through the Get a Quote form, including any photos,
+            are delivered to our inbox by email through our email provider,
+            Resend. This website does not use advertising or tracking cookies.
           </p>
           <p>
             If you would like your information removed from our records,

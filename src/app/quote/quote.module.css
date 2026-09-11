@@ -189,6 +189,28 @@
   color: var(--accent-dark);
   line-height: 1.6;
 }
+.sentNote a,
+.errorNote a { text-decoration: underline; }
+
+.errorNote {
+  font-size: 0.86rem;
+  color: #9a2f22;
+  line-height: 1.6;
+}
+
+.form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+  box-shadow: none;
+}
+
+.thanks {
+  align-items: flex-start;
+  gap: 16px;
+}
+.thanks a { font-weight: 600; text-decoration: underline; }
+.thanksHeading { margin: 0; }
 
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }

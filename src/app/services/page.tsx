@@ -9,6 +9,7 @@ import styles from "./services.module.css";
 export const metadata: Metadata = {
   title: "Services — A.P Craft Upholstery",
   description: "Custom upholstery, reupholstery and commercial seating built by hand in our Vaughan workshop.",
+  alternates: { canonical: "/services" },
 };
 
 const services = [

@@ -1,0 +1,14 @@
+.wrap {
+  max-width: 640px;
+  padding-top: clamp(24px, 6vw, 72px);
+  padding-bottom: clamp(24px, 6vw, 72px);
+}
+
+.heading { margin: 16px 0 18px; }
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

@@ -9,6 +9,7 @@ import styles from "./commercial.module.css";
 export const metadata: Metadata = {
   title: "Commercial Upholstery — A.P Craft Upholstery",
   description: "Booths, banquettes and seating for restaurants, salons, hotels and offices across the GTA — built for daily use.",
+  alternates: { canonical: "/commercial" },
 };
 
 const points = [

@@ -6,6 +6,7 @@ import styles from "./quote.module.css";
 export const metadata: Metadata = {
   title: "Get a Quote — A.P Craft Upholstery",
   description: "Tell us about your piece — reupholstery, custom furniture or a commercial project.",
+  alternates: { canonical: "/quote" },
 };
 
 export default function QuotePage() {

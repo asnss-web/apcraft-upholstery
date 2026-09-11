@@ -1,5 +1,7 @@
 // Central place for real studio info — keeps every page honest and consistent.
 
+export const siteUrl = "https://apcraftupholstery.ca";
+
 export const studio = {
   name: "A.P Craft Upholstery",
   phone: "437 971 5302",

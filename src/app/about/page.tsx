@@ -8,6 +8,7 @@ import styles from "./about.module.css";
 export const metadata: Metadata = {
   title: "About — A.P Craft Upholstery",
   description: "European craftsmanship and Canadian industry experience creating quality upholstery for Toronto and the GTA.",
+  alternates: { canonical: "/about" },
 };
 
 const bio = [

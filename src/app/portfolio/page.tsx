@@ -7,6 +7,7 @@ import styles from "./portfolio.module.css";
 export const metadata: Metadata = {
   title: "Portfolio — A.P Craft Upholstery",
   description: "Sofas, chairs, beds, banquettes and commercial upholstery reupholstered and custom-built by A.P Craft Upholstery.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {

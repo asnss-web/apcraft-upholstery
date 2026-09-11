@@ -7,6 +7,7 @@ import styles from "./contact.module.css";
 export const metadata: Metadata = {
   title: "Contact — A.P Craft Upholstery",
   description: "Reach A.P Craft Upholstery by phone, email or Instagram. Workshop in Vaughan, serving Toronto and the GTA.",
+  alternates: { canonical: "/contact" },
 };
 
 const details = [

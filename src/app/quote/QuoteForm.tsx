@@ -51,7 +51,7 @@ async function shrinkImage(file: File): Promise<File> {
   }
 }
 
-// Used only while RESEND_API_KEY isn't configured — hands the request to the visitor's mail app.
+// Used when the server can't send (no RESEND_API_KEY, or Resend refuses) — hands the request to the visitor's mail app.
 function openMailDraft(data: FormData, fileCount: number) {
   const get = (key: string) => String(data.get(key) ?? "");
   const subject = `Quote request — ${get("firstName")} ${get("lastName")}`.trim();
@@ -117,7 +117,9 @@ export default function QuoteForm() {
 
     try {
       const res = await fetch("/api/quote", { method: "POST", body: data });
-      if (res.status === 503) {
+      // 503: sending not configured, 502: Resend refused (e.g. domain not verified yet) —
+      // either way hand the request to the visitor's mail app so the lead isn't lost
+      if (res.status === 503 || res.status === 502) {
         openMailDraft(data, files.length);
         setStatus("mailto");
         return;

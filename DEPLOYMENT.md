@@ -15,11 +15,15 @@ default alias, so `ap-craft.vercel.app` otherwise stays pinned to an old deploym
 
 ## DNS at Namecheap (client's account, shared with us as domain manager)
 
-The domain also runs Namecheap Private Email (MX `mx1`/`mx2.privateemail.com` plus an
-SPF TXT record). **Do not switch the nameservers to Vercel** — that would take the
-mailboxes down. Add these records alongside the existing mail ones, in
-Advanced DNS, and delete the two parking records (`CNAME www → parkingpage.namecheap.com`
-and the `URL Redirect`/`A @` parking entry).
+These records are live as of 2026-09-14 — the list is here so the setup can be
+rebuilt or checked, not as a to-do. The two parking records the domain shipped with
+(`CNAME www → parkingpage.namecheap.com` and the `URL Redirect @`) were deleted, and
+Parking Page switched itself off with them.
+
+The domain also runs Namecheap Private Email. Its MX records live under
+**Mail Settings → Private Email**, not in Host Records, which is why they never show
+up in that table — leave that dropdown alone. **Do not switch the nameservers to
+Vercel** either: that would take the mailboxes down.
 
 ### Website
 

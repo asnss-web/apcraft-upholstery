@@ -44,7 +44,8 @@ const localBusinessSchema = {
   url: siteUrl,
   logo: `${siteUrl}/images/logo-v2.png`,
   image: `${siteUrl}/opengraph-image.jpg`,
-  telephone: studio.phone,
+  // Google wants the international form here, not the display form
+  telephone: studio.phoneHref.replace("tel:", ""),
   email: studio.email,
   address: {
     "@type": "PostalAddress",

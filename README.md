@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# A.P Craft Upholstery
 
-## Getting Started
+Website for A.P Craft Upholstery (Vaughan, serving Toronto & the GTA) — https://apcraftupholstery.ca
 
-First, run the development server:
+Next.js 16 (App Router), TypeScript, plain CSS modules. No database, no CMS: content lives in
+`src/lib/` (`content.ts`, `portfolio.ts`) and photos in `public/images/`.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things are
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What                                  | Where                              |
+| ------------------------------------- | ---------------------------------- |
+| Phone, email, address (shared copy)   | `src/lib/content.ts` (the structured-data address is in `src/app/layout.tsx`) |
+| Portfolio items and categories        | `src/lib/portfolio.ts`             |
+| Quote form → email (Resend)           | `src/app/api/quote/route.ts`       |
+| Colors, fonts, spacing tokens         | `src/app/globals.css`              |
+| Google Search Console verification    | `public/google759baa2e37960e64.html` — **do not delete** |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying and DNS
 
-## Learn More
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for the deploy commands, the DNS records and the quote-form setup.
+See [`TRANSFER.md`](./TRANSFER.md) for moving the Vercel project, repo and Resend domain to a new owner.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Environment variables are listed in `.env.example`. The only required one is `RESEND_API_KEY`.
